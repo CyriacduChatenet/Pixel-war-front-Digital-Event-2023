@@ -3,6 +3,7 @@ import { useState } from "react";
 const ProgressBar = () => {
   const [progress, setProgress] = useState(0);
   const [coins, setCoins] = useState(0);
+  
 
   const handleProgress = (e) => {
     setProgress(progress + 1);
@@ -15,7 +16,11 @@ const ProgressBar = () => {
   return (
     <div className="c-progressbar">
       <span>{coins}</span>
-      <progress value={progress} max={20} />
+      <progress
+        value={progress}
+        max={20}
+        className="c-progressbar__progress"
+      />
       <button onClick={handleProgress}>Augmenter</button>
     </div>
   );

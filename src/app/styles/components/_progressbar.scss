@@ -2,5 +2,35 @@
     right: 20px;
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%) rotate(-90deg);
+
+    &__progress {
+        border: 0;
+        border-radius: 50px;
+        -webkit-appearance: none;
+        appearance: none;
+
+        &[value] {
+            position: relative;
+
+            &::-webkit-progress-inner-element {
+                border-radius: 8px;
+                overflow: hidden;
+                background-position: inherit;
+            }
+
+            &::-webkit-progress-bar {
+                background: #eee;
+                border: solid 1px #23d5ab;
+                border-radius: 100px;
+            }
+
+            &::-webkit-progress-value {
+                background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+                background-size: 400% 400%;
+                border-radius: 50px;
+
+            }
+        }
+    }
 }
