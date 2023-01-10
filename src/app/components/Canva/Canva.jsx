@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import ColorBar from "../ColorBar/ColorBar";
+import UserInteractionToast from "../UserInteractionToast/UserInteractionToast";
 
 const Canva = ({currentColor, setCurrentColor}) => {
   const gameRef = useRef(null);
@@ -92,6 +93,7 @@ const Canva = ({currentColor, setCurrentColor}) => {
         className="c-canvas__game"
       ></canvas>
       <ColorBar currentColor={currentColor} setCurrentColor={setCurrentColor} />
+      <UserInteractionToast />
     </div>
   );
 };
