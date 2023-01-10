@@ -1,4 +1,4 @@
-import Layout from "./app/components/Canva/Layout";
+import Layout from "./app/components/Layout";
 
 function App() {
   return <Layout />;

@@ -4,18 +4,17 @@ export const login = async (data) => {
   try {
     const response = await postRequestWithoutToken("/auth/login", data);
     localStorage.setItem("token", response.data.access_token);
-    return response;
+    return response.data;
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 };
 
-export const register = async (email, password, username, team) => {
+export const register = async (data) => {
   try {
-    const data = { email, password, username, team };
     const response = await postRequest("/auth/signup", data);
-    return response;
+    return response.data;
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 };
