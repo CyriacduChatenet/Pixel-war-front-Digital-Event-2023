@@ -1,8 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import ColorBar from "../ColorBar/ColorBar";
-import UserInteractionToast from "../UserInteractionToast/UserInteractionToast";
+import { toast, ToastContainer } from "react-toastify";
 
-const Canva = ({currentColor, setCurrentColor}) => {
+const Canva = ({ currentColor, setCurrentColor }) => {
+  const [toastInfos, setToastInfos] = useState({
+    id: 1,
+    name: "Jeanne",
+  });
   const gameRef = useRef(null);
   const cursorRef = useRef(null);
   //   "#FFEBEE",
@@ -55,6 +59,12 @@ const Canva = ({currentColor, setCurrentColor}) => {
     const x = cursorRef.current.offsetLeft;
     const y = cursorRef.current.offsetTop - game.offsetTop;
     console.log("change color");
+    toast(`${toastInfos.name} vient de poser un pixel 🤖`, {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+    });
 
     createPixel(ctx, x, y, currentColorChoice);
   }
@@ -74,7 +84,7 @@ const Canva = ({currentColor, setCurrentColor}) => {
     }
     ctx.stroke();
   }
-  
+
   useEffect(() => {
     const game = gameRef.current;
     game.width = document.body.clientWidth;
@@ -84,7 +94,12 @@ const Canva = ({currentColor, setCurrentColor}) => {
   }, []);
   return (
     <div className="c-canvas">
-      <div id="cursor" className="c-canvas__cursor" ref={cursorRef} onClick={handleAddPixel}></div>
+      <div
+        id="cursor"
+        className="c-canvas__cursor"
+        ref={cursorRef}
+        onClick={handleAddPixel}
+      ></div>
       <canvas
         id="game"
         ref={gameRef}
@@ -93,7 +108,7 @@ const Canva = ({currentColor, setCurrentColor}) => {
         className="c-canvas__game"
       ></canvas>
       <ColorBar currentColor={currentColor} setCurrentColor={setCurrentColor} />
-      <UserInteractionToast />
+      <ToastContainer style={{width: "250px", opacity: "50%", zIndex: "-1"}}/>
     </div>
   );
 };
