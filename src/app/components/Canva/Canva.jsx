@@ -26,7 +26,6 @@ const Canva = () => {
     "#000",
   ];
 
-  const ctx = gameRef.current.getContext("2d");
   let currentColorChoice = colorList[9];
   const gridCellSize = 10;
 
@@ -43,8 +42,7 @@ const Canva = () => {
       Math.floor(cursorTop / gridCellSize) * gridCellSize + "px";
   };
 
-  function createPixel(x, y, color) {
-    const game = gameRef.current;
+  function createPixel(ctx, x, y, color) {
     ctx.beginPath();
     ctx.fillStyle = color;
     ctx.fillRect(x, y, gridCellSize, gridCellSize);
@@ -52,17 +50,12 @@ const Canva = () => {
 
   function addPixelIntoGame() {
     const game = gameRef.current;
+    const ctx = game.getContext("2d");
     const x = cursorRef.current.offsetLeft;
     const y = cursorRef.current.offsetTop - game.offsetTop;
     console.log("change color");
 
-    createPixel(x, y, currentColorChoice);
-
-    const pixel = {
-      x,
-      y,
-      color: currentColorChoice,
-    };
+    createPixel(ctx, x, y, currentColorChoice);
   }
 
   const handleColorChange = (color) => {
@@ -90,9 +83,9 @@ const Canva = () => {
     game.height = document.body.clientHeight;
     const gridCtx = game.getContext("2d");
     drawGrids(gridCtx, game.width, game.height, gridCellSize, gridCellSize);
-  });
+  }, []);
   return (
-    <>
+    <div className="c-canvas">
       <div id="cursor" ref={cursorRef}></div>
       <canvas
         id="game"
@@ -109,7 +102,7 @@ const Canva = () => {
           ></div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
