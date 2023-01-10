@@ -1,14 +1,21 @@
 import { login } from "../../setup/services/auth.service";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const handleSubmit = async (e) => {
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      console.log(e.target.username.value);
-      console.log(e.target.password.value);
-    } catch (e) {
-      console.log(e);
-    }
+    const username = e.target.username.value;
+    const password = e.target.password.value;
+    const data = { username, password };
+    console.log(data);
+    login(data)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
