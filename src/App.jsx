@@ -1,7 +1,9 @@
+import Canva from "./app/components/Canva/Canva";
+
 function App() {
   return (
     <div className="App">
-      <h1>Hello Pixel War App</h1>
+        <Canva />
     </div>
   );
 }
