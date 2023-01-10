@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import ColorBar from "../ColorBar/ColorBar";
 
-const Canva = ({currentColor, setCurrentColor}) => {
+const Canva = ({ currentColor, setCurrentColor }) => {
   const gameRef = useRef(null);
   const cursorRef = useRef(null);
   //   "#FFEBEE",
@@ -73,7 +73,7 @@ const Canva = ({currentColor, setCurrentColor}) => {
     }
     ctx.stroke();
   }
-  
+
   useEffect(() => {
     const game = gameRef.current;
     game.width = document.body.clientWidth;
@@ -83,7 +83,12 @@ const Canva = ({currentColor, setCurrentColor}) => {
   }, []);
   return (
     <div className="c-canvas">
-      <div id="cursor" className="c-canvas__cursor" ref={cursorRef} onClick={handleAddPixel}></div>
+      <div
+        id="cursor"
+        className="c-canvas__cursor"
+        ref={cursorRef}
+        onClick={handleAddPixel}
+      ></div>
       <canvas
         id="game"
         ref={gameRef}
