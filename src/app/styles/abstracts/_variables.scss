@@ -4,41 +4,24 @@ $main-orange: #E27D41;
 // FONTS
 
     @font-face {
-        font-family: $Unibody-black;
+        font-family: 'Unibody-black';
         src: url('/public/assets/Unibody_8_Black.ttf');
     }
     @font-face {
-        font-family: $Unibody-bold;
+        font-family: 'Unibody-bold';
         src: url('/public/assets/Unibody_8_Bold.ttf');
     }
     @font-face {
-        font-family: $Unibody-regular;
+        font-family: 'Unibody-regular';
         src: url('/public/assets/Unibody\ 8\ Regular.ttf');
     }
     @font-face {
-        font-family: $Gantari;
+        font-family: 'Gantari';
         src: url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');
     }
 
-// TEXT SIZES
+    $Unibody-black: "Unibody-black";
+    $Unibody-bold: "Unibody-bold";
+    $Unibody-regular: "Unibody-regular";
+    $Gentari: "Gantari";
 
-@mixin main-title {
-    font-family: $Unibody-black;
-    font-size: 56px;
-}
-@mixin secondary-title {
-    font-family: $Gantari;
-    font-weight: 700;
-    font-size: 60px;
-    line-height: 68px;
-}
-@mixin main-text {
-    font-family: $Gantari;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 32px;
-}
-@mixin count-text {
-    font-family: $Unibody-black;
-    font-size: 64px;
-}
