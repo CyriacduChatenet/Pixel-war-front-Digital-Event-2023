@@ -1,33 +1,32 @@
 import { useEffect, useRef } from "react";
 import ColorBar from "../ColorBar/ColorBar";
 
-const Canva = () => {
+const Canva = ({currentColor, setCurrentColor}) => {
   const gameRef = useRef(null);
   const cursorRef = useRef(null);
-  const colorList = [
-    "#FFEBEE",
-    "#FCE4EC",
-    "#F3E5F5",
-    "#B39DDB",
-    "#9FA8DA",
-    "#90CAF9",
-    "#81D4FA",
-    "#80DEEA",
-    "#4DB6AC",
-    "#66BB6A",
-    "#9CCC65",
-    "#CDDC39",
-    "#FFEB3B",
-    "#FFC107",
-    "#FF9800",
-    "#FF5722",
-    "#A1887F",
-    "#E0E0E0",
-    "#90A4AE",
-    "#000",
-  ];
+  //   "#FFEBEE",
+  //   "#FCE4EC",
+  //   "#F3E5F5",
+  //   "#B39DDB",
+  //   "#9FA8DA",
+  //   "#90CAF9",
+  //   "#81D4FA",
+  //   "#80DEEA",
+  //   "#4DB6AC",
+  //   "#66BB6A",
+  //   "#9CCC65",
+  //   "#CDDC39",
+  //   "#FFEB3B",
+  //   "#FFC107",
+  //   "#FF9800",
+  //   "#FF5722",
+  //   "#A1887F",
+  //   "#E0E0E0",
+  //   "#90A4AE",
+  //   "#000",
+  // ];
 
-  let currentColorChoice = colorList[9];
+  let currentColorChoice = currentColor;
   const gridCellSize = 10;
 
   const handleAddPixel = () => {
@@ -59,10 +58,6 @@ const Canva = () => {
     createPixel(ctx, x, y, currentColorChoice);
   }
 
-  const handleColorChange = (color) => {
-    currentColorChoice = color;
-  };
-
   function drawGrids(ctx, width, height, cellWidth, cellHeight) {
     ctx.beginPath();
     ctx.strokeStyle = "#ccc";
@@ -78,6 +73,7 @@ const Canva = () => {
     }
     ctx.stroke();
   }
+  
   useEffect(() => {
     const game = gameRef.current;
     game.width = document.body.clientWidth;
@@ -87,23 +83,15 @@ const Canva = () => {
   }, []);
   return (
     <div className="c-canvas">
-      <div id="cursor" ref={cursorRef}></div>
+      <div id="cursor" className="c-canvas__cursor" ref={cursorRef} onClick={handleAddPixel}></div>
       <canvas
         id="game"
         ref={gameRef}
         onClick={() => handleAddPixel()}
         onMouseMove={(e) => handleFollowMouse(e)}
+        className="c-canvas__game"
       ></canvas>
-      {/* <div id="colorsChoice">
-        {colorList.map((color, index) => (
-          <div
-            key={index}
-            onClick={() => handleColorChange(color)}
-            style={{ backgroundColor: color }}
-          ></div>
-        ))}
-      </div> */}
-      <ColorBar />
+      <ColorBar currentColor={currentColor} setCurrentColor={setCurrentColor} />
     </div>
   );
 };

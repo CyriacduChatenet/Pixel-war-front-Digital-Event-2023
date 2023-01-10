@@ -1,11 +1,8 @@
-import { useState } from "react";
 import { SliderPicker } from "react-color";
 
-const ColorBar = () => {
-  const [currentColor, setCurrentColor] = useState("#fff");
-
-  const handleChangeComplete = (color) => {
-    setCurrentColor(color);
+const ColorBar = ({ currentColor, setCurrentColor }) => {
+ const handleChangeComplete = (color) => {
+    setCurrentColor(color.hex);
   };
   return (
     <SliderPicker
