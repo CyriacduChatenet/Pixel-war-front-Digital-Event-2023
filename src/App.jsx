@@ -1,11 +1,7 @@
-import Canva from "./app/components/Canva/Canva";
+import Layout from "./app/components/Canva/Layout";
 
 function App() {
-  return (
-    <div className="App">
-        <Canva />
-    </div>
-  );
+  return <Layout />;
 }
 
 export default App;
