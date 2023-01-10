@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import ColorBar from "../ColorBar/ColorBar";
 
 const Canva = () => {
   const gameRef = useRef(null);
@@ -93,7 +94,7 @@ const Canva = () => {
         onClick={() => handleAddPixel()}
         onMouseMove={(e) => handleFollowMouse(e)}
       ></canvas>
-      <div id="colorsChoice">
+      {/* <div id="colorsChoice">
         {colorList.map((color, index) => (
           <div
             key={index}
@@ -101,7 +102,8 @@ const Canva = () => {
             style={{ backgroundColor: color }}
           ></div>
         ))}
-      </div>
+      </div> */}
+      <ColorBar />
     </div>
   );
 };

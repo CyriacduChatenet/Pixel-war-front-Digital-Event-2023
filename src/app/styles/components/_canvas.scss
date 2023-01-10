@@ -1,4 +1,5 @@
 .c-canvas {
+    position: relative;
     margin: 0;
     width: 100vw;
     height: 100vh;
@@ -15,7 +16,6 @@ h1 {
     height: 100%;
     box-shadow: 1px 1px 10px -5px rgba(0, 0, 0, 0.5);
     cursor: none;
-    position: absolute;
     z-index: 1;
 }
 
@@ -25,6 +25,7 @@ h1 {
     top: 180px;
     z-index: 2;
 }
+
 #colorsChoice div {
     background-color: #ff5a5f;
     height: 20px;
@@ -39,6 +40,7 @@ h1 {
     align-items: center;
     color: #fff;
 }
+
 #colorsChoice div:hover {
     border-color: #000000;
 }
