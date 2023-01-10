@@ -1,8 +1,11 @@
 import { useEffect, useRef } from "react";
+import ClickAnim from "../ClickAnim/ClickAnim";
+import clickAnim from "../ClickAnim/ClickAnim"
 import ColorBar from "../ColorBar/ColorBar";
 
-const Canva = ({currentColor, setCurrentColor}) => {
+const Canva = ({currentColor, setCurrentColor, pixelCoor, setPixelCoor}) => {
   const gameRef = useRef(null);
+  const addPixelAnimRef = useRef(null)
   const cursorRef = useRef(null);
   //   "#FFEBEE",
   //   "#FCE4EC",
@@ -46,6 +49,15 @@ const Canva = ({currentColor, setCurrentColor}) => {
     ctx.beginPath();
     ctx.fillStyle = color;
     ctx.fillRect(x, y, gridCellSize, gridCellSize);
+
+    setPixelCoor([x, y])
+
+    addPixelAnimRef.current.style.top = y + "px"
+    addPixelAnimRef.current.style.left = x + "px"
+    addPixelAnimRef.current.style.animation = "pixelAddAnim ease-in-out 1s forwards"
+    addPixelAnimRef.current.addEventListener('animationend', () => {
+      addPixelAnimRef.current.style.animation = ""
+    });
   }
 
   function addPixelIntoGame() {
@@ -53,7 +65,6 @@ const Canva = ({currentColor, setCurrentColor}) => {
     const ctx = game.getContext("2d");
     const x = cursorRef.current.offsetLeft;
     const y = cursorRef.current.offsetTop - game.offsetTop;
-    console.log("change color");
 
     createPixel(ctx, x, y, currentColorChoice);
   }
@@ -92,6 +103,7 @@ const Canva = ({currentColor, setCurrentColor}) => {
         className="c-canvas__game"
       ></canvas>
       <ColorBar currentColor={currentColor} setCurrentColor={setCurrentColor} />
+      <div ref={addPixelAnimRef} className='pixelAdd'>+1</div>
     </div>
   );
 };
