@@ -86,17 +86,19 @@ const Canva = () => {
   }, []);
   return (
     <div className="c-canvas">
-      <div id="cursor" ref={cursorRef}></div>
+      <div id="cursor" className="c-canvas__cursor" ref={cursorRef}></div>
       <canvas
         id="game"
         ref={gameRef}
         onClick={() => handleAddPixel()}
         onMouseMove={(e) => handleFollowMouse(e)}
+        className="c-canvas__game"
       ></canvas>
-      <div id="colorsChoice">
+      <div id="colorsChoice" className="c-canvas__colorsChoice">
         {colorList.map((color, index) => (
           <div
             key={index}
+            className="c-canvas__colorsChoice__choice"
             onClick={() => handleColorChange(color)}
             style={{ backgroundColor: color }}
           ></div>
