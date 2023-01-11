@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import ColorBar from "../ColorBar/ColorBar";
 import HudInfo from "../HudInfos/HudInfos";
+import ActionMenus from "../ActionsMenus/ActionsMenus";
 
 const Canva = ({ currentColor, setCurrentColor }) => {
   const [xPosition, setXPosition] = useState(0);
   const [yPosition, setYPosition] = useState(0);
+  const [hide, setHide] = useState(false);
   const gameRef = useRef(null);
   const cursorRef = useRef(null);
   //   "#FFEBEE",
@@ -109,7 +111,12 @@ const Canva = ({ currentColor, setCurrentColor }) => {
         className="c-canvas__game"
       ></canvas>
       <HudInfo totalTimeInSec={10800} x={xPosition} y={yPosition} />
-      <ColorBar currentColor={currentColor} setCurrentColor={setCurrentColor} />
+      <ColorBar
+        hide={hide}
+        currentColor={currentColor}
+        setCurrentColor={setCurrentColor}
+      />
+      <ActionMenus setHide={setHide} hide={hide} />
     </div>
   );
 };

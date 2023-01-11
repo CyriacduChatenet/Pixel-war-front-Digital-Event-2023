@@ -1,0 +1,28 @@
+.lastPixel {
+ position: absolute;
+ right: -100%;
+ top: 0;
+ height: 100vh;
+ width: 20%;
+ z-index: 2;
+ background-color: rgba($color: #383838, $alpha: 0.3);
+ transition: 0.4s ease-in-out all;
+
+ &__content {
+  position: relative;
+  height: 100%;
+  width: 100%;
+
+  .close-icon {
+   position: absolute;
+   left: 50%;
+   top: 16px;
+   transform: translateX(-50%);
+   cursor: pointer;
+  }
+ }
+}
+
+.menu-active {
+ right: 0;
+}
