@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getTokenFromLocalstorage } from "./authorization";
 import { firestoreDb } from "./firebase";
-import { createUserWithEmailAndPassword, getAuth, signInWithCredential, signInWithCustomToken, signInWithEmailAndPassword, updateProfile } from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth, sendPasswordResetEmail, signInWithCredential, signInWithCustomToken, signInWithEmailAndPassword, updateProfile } from "firebase/auth"
 
 /** headers REQUEST **/
 
@@ -35,6 +35,17 @@ export const connectUser = async (data) => {
   .then((userCredential) => {
     const user = userCredential.user;
     localStorage.setItem("token", user.accessToken);
+  })
+}
+
+export const resetPassword = (email) => {
+  const auth = getAuth()
+  sendPasswordResetEmail(auth, email)
+  .then(() => {
+    console.log("email sent")
+  })
+  .catch((error) => {
+    console.log(error.message)
   })
 }
 

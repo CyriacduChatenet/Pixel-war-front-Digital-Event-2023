@@ -19,6 +19,10 @@ const Login = () => {
       });
   };
 
+  const handleResetPassword = () => {
+    navigate('/reset')
+  }
+
   return (
     <>
       <h1>Login</h1>
@@ -28,6 +32,7 @@ const Login = () => {
         <input type="password" name="password" required />
         <button type="submit">Connexion</button>
       </form>
+      <button onClick={handleResetPassword}>Mot de passe oubliée</button>
     </>
   );
 };

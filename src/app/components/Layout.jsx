@@ -3,6 +3,7 @@ import UserContextProvider from "../../setup/contexts/UserContext";
 import HomePage from "../pages/HomePage";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import ResetPassword from "../pages/ResetPassword";
 import ProtectedRoute from "./ProtectedRoutes";
 
 const Layout = () => {
@@ -20,6 +21,7 @@ const Layout = () => {
           />
           <Route path="/connexion" element={<Login />} />
           <Route path="/inscription" element={<Register />} />
+          <Route path="/reset" element={<ResetPassword />} />
         </Routes>
       </Router>
     </UserContextProvider>
