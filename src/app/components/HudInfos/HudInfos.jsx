@@ -4,8 +4,18 @@ const HudInfo = ({ totalTimeInSec, x, y }) => {
   const [time, setTime] = useState(totalTimeInSec);
 
   const hours = Math.floor(time / 3600);
-  const minutes = Math.floor((time % 3600) / 60);
-  const seconds = Math.floor(time % 60);
+  let minutes = Math.floor((time % 3600) / 60);
+  let seconds = Math.floor(time % 60);
+
+  const renderTime = () => {
+    if (seconds < 10) {
+      seconds = "0" + seconds;
+    }
+    if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+    return hours + ":" + minutes + ":" + seconds;
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -24,9 +34,7 @@ const HudInfo = ({ totalTimeInSec, x, y }) => {
       </div>
       <div className="c-hud-info__container">
         <div className="c-hud-info__left"></div>
-        <p>
-          Temps: {hours} : {minutes} : {seconds}
-        </p>
+        <p>Temps: {renderTime()}</p>
         <div className="c-hud-info__right"></div>
       </div>
     </div>

@@ -108,7 +108,7 @@ const Canva = ({ currentColor, setCurrentColor }) => {
         onMouseMove={(e) => handleFollowMouse(e)}
         className="c-canvas__game"
       ></canvas>
-      <HudInfo totalTimeInSec={10800} x={xPosition} y={yPosition} />
+      <HudInfo totalTimeInSec={10755} x={xPosition} y={yPosition} />
       <ColorBar currentColor={currentColor} setCurrentColor={setCurrentColor} />
     </div>
   );
