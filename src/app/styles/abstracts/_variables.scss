@@ -2,7 +2,7 @@
 $main-orange: #E27D41;
 
 // FONTS
-
+    @import url('https://fonts.googleapis.com/css2?family=Gantari&display=swap');
     @font-face {
         font-family: 'Unibody-black';
         src: url('../../assets/Unibody_8_Black.ttf');
@@ -14,10 +14,6 @@ $main-orange: #E27D41;
     @font-face {
         font-family: 'Unibody-regular';
         src: url('../../assets/Unibody\ 8\ Regular.ttf');
-    }
-    @font-face {
-        font-family: 'Gantari';
-        src: url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');
     }
 
     $Unibody-black: "Unibody-black";
