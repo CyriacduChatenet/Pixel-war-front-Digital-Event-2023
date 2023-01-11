@@ -23,9 +23,9 @@ const createPixelService = async ({x, y, color}) => {
 }
 
 const updatePixelsGrid = async (game, createPixel) => {
-    const snapshot = onSnapshot(gamesCollection ,(snapshot) => {
+    const snapshots = onSnapshot(gamesCollection ,(snapshot) => {
         snapshot.docChanges().forEach( async (change) => {
-            console.log(change);
+            console.log(change.doc.data());
             const ctx = game.getContext("2d")
             createPixel(ctx, change.x, change.y, change.color)
         },
