@@ -1,9 +1,12 @@
-import { useEffect, useRef } from "react";
-import ClickAnim from "../ClickAnim/ClickAnim";
-import clickAnim from "../ClickAnim/ClickAnim"
+import { useEffect, useRef, useState } from "react";
 import ColorBar from "../ColorBar/ColorBar";
+import HudInfo from "../HudInfos/HudInfos";
+import ActionMenus from "../ActionsMenus/ActionsMenus";
 
-const Canva = ({currentColor, setCurrentColor, pixelCoor, setPixelCoor}) => {
+const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => {
+  const [xPosition, setXPosition] = useState(0);
+  const [yPosition, setYPosition] = useState(0);
+  const [hide, setHide] = useState(false);
   const gameRef = useRef(null);
   const addPixelAnimRef = useRef(null)
   const cursorRef = useRef(null);
@@ -37,8 +40,13 @@ const Canva = ({currentColor, setCurrentColor, pixelCoor, setPixelCoor}) => {
   };
 
   const handleFollowMouse = (event) => {
+    const game = gameRef.current;
     const cursorLeft = event.clientX - cursorRef.current.offsetWidth / 2;
     const cursorTop = event.clientY - cursorRef.current.offsetHeight / 2;
+    const x = cursorRef.current.offsetLeft;
+    const y = cursorRef.current.offsetTop - game.offsetTop;
+    setXPosition(x / 10);
+    setYPosition(y / 10);
     cursorRef.current.style.left =
       Math.floor(cursorLeft / gridCellSize) * gridCellSize + "px";
     cursorRef.current.style.top =
@@ -49,9 +57,7 @@ const Canva = ({currentColor, setCurrentColor, pixelCoor, setPixelCoor}) => {
     ctx.beginPath();
     ctx.fillStyle = color;
     ctx.fillRect(x, y, gridCellSize, gridCellSize);
-
-    setPixelCoor([x, y])
-
+    setPixelColor([x, y])
     addPixelAnimRef.current.style.top = y + "px"
     addPixelAnimRef.current.style.left = x + "px"
     addPixelAnimRef.current.style.animation = "pixelAddAnim ease-in-out 1s forwards"
@@ -65,7 +71,12 @@ const Canva = ({currentColor, setCurrentColor, pixelCoor, setPixelCoor}) => {
     const ctx = game.getContext("2d");
     const x = cursorRef.current.offsetLeft;
     const y = cursorRef.current.offsetTop - game.offsetTop;
-
+    const payload = {
+      x: x,
+      y: y,
+      color: currentColor,
+    };
+    // socket emit payload as "pixel"
     createPixel(ctx, x, y, currentColorChoice);
   }
 
@@ -84,7 +95,7 @@ const Canva = ({currentColor, setCurrentColor, pixelCoor, setPixelCoor}) => {
     }
     ctx.stroke();
   }
-  
+
   useEffect(() => {
     const game = gameRef.current;
     game.width = document.body.clientWidth;
@@ -94,7 +105,12 @@ const Canva = ({currentColor, setCurrentColor, pixelCoor, setPixelCoor}) => {
   }, []);
   return (
     <div className="c-canvas">
-      <div id="cursor" className="c-canvas__cursor" ref={cursorRef} onClick={handleAddPixel}></div>
+      <div
+        id="cursor"
+        className="c-canvas__cursor"
+        ref={cursorRef}
+        onClick={handleAddPixel}
+      ></div>
       <canvas
         id="game"
         ref={gameRef}
@@ -102,8 +118,14 @@ const Canva = ({currentColor, setCurrentColor, pixelCoor, setPixelCoor}) => {
         onMouseMove={(e) => handleFollowMouse(e)}
         className="c-canvas__game"
       ></canvas>
-      <ColorBar currentColor={currentColor} setCurrentColor={setCurrentColor} />
       <div ref={addPixelAnimRef} className='pixelAdd'>+1</div>
+      <HudInfo totalTimeInSec={10800} x={xPosition} y={yPosition} />
+      <ColorBar
+        hide={hide}
+        currentColor={currentColor}
+        setCurrentColor={setCurrentColor}
+      />
+      <ActionMenus setHide={setHide} hide={hide} />
     </div>
   );
 };

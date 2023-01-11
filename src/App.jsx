@@ -3,10 +3,10 @@ import Canva from "./app/components/Canva/Canva";
 
 function App() {
   const [currentColor, setCurrentColor] = useState("#4287f5");
-  const [pixelCoor, setPixelCoor] = useState([]);
+  const [pixelColor, setPixelColor] = useState([]);
   return (
     <div className="App">
-      <Canva currentColor={currentColor} setCurrentColor={setCurrentColor} pixelCoor={pixelCoor} setPixelCoor={setPixelCoor} />
+      <Canva currentColor={currentColor} setCurrentColor={setCurrentColor} pixelColor={pixelColor} setPixelColor={setPixelColor} />
     </div>
   );
 }
