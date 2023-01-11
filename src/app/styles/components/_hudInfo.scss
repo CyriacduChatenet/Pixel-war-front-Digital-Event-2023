@@ -1,0 +1,77 @@
+.c-hud-info {
+    position: absolute;
+    top: 37px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    &__container {
+        position: relative;
+        width: 381px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 14.5px 0;
+        border: 1px solid $main-orange;
+        border: 1px solid $main-orange;
+        background-color: #fff;
+        &:first-child {
+            margin-right: 90px;
+        }
+        p {
+            font-family: $Unibody-regular;
+            color: $main-orange;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 30px;
+            text-align: left;
+        }
+    }
+    &__left {
+        width: 8px;
+        height: 48px;
+        background-color: #fff;
+        border-left: 1px solid $main-orange;
+        border-top: 1px solid $main-orange;
+        border-bottom: 1px solid $main-orange;
+        position: absolute;
+        left: -8px;
+        &::before {
+            content: "";
+            position: absolute;
+            left: -11px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 11px;
+            height: 34px;
+            background-color: #fff;
+            border-top: 1px solid $main-orange;
+            border-left: 1px solid $main-orange;
+            border-bottom: 1px solid $main-orange;
+        }
+    }
+    &__right {
+        width: 8px;
+        height: 48px;
+        background-color: #fff;
+        border-right: 1px solid $main-orange;
+        border-top: 1px solid $main-orange;
+        border-bottom: 1px solid $main-orange;
+        position: absolute;
+        right: -8px;
+        &::before {
+            content: "";
+            position: absolute;
+            right: -11.5px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 11px;
+            height: 34px;
+            background-color: #fff;
+            border-top: 1px solid $main-orange;
+            border-right: 1px solid $main-orange;
+            border-bottom: 1px solid $main-orange;
+        }
+    }
+}
