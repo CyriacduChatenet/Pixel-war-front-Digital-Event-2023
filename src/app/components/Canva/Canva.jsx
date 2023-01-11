@@ -53,8 +53,12 @@ const Canva = ({currentColor, setCurrentColor}) => {
     const ctx = game.getContext("2d");
     const x = cursorRef.current.offsetLeft;
     const y = cursorRef.current.offsetTop - game.offsetTop;
-    console.log("change color");
-
+    const payload = {
+      x: x,
+      y: y,
+      color: currentColor
+    }
+    // socket emit payload as "pixel"
     createPixel(ctx, x, y, currentColorChoice);
   }
 
