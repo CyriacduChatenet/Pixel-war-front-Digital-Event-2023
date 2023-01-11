@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
+import { createUser } from "../../setup/utils/useApi";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -18,21 +19,27 @@ const Register = () => {
       setError("Les mots de passe ne correspondent pas");
       return;
     }
-    const data = { username, password, email, team };
-    fetch(process.env.REACT_APP_API + "/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then(() => {
-        navigate("/");
-      })
-      .catch((e) => {
-        setError("Une erreur est survenue");
-        console.log(e);
-      });
+    const data = {
+      username: username,
+      password: password,
+      email: email
+    }
+    createUser(data)
+    // const data = { username, password, email, team };
+    // fetch(process.env.REACT_APP_API + "/auth/signup", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then(() => {
+    //     navigate("/");
+    //   })
+    //   .catch((e) => {
+    //     setError("Une erreur est survenue");
+    //     console.log(e);
+    //   });
   };
 
   useEffect(() => {
@@ -55,7 +62,7 @@ const Register = () => {
         <label htmlFor="email">Email</label>
         <input type="email" name="email" id="email" required />
         <label htmlFor="teams">Equipe</label>
-        <select name="teams" id="teams" required>
+        <select name="teams" id="teams">
           <option value="" style={{ display: "none" }}>
             Choisir une équipe
           </option>

@@ -7,9 +7,9 @@ const Login = () => {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    const username = e.target.username.value;
+    const email = e.target.email.value;
     const password = e.target.password.value;
-    const data = { username, password };
+    const data = { email, password };
     login(data)
       .then(() => {
         navigate("/");
@@ -24,7 +24,7 @@ const Login = () => {
       <h1>Login</h1>
       {error && <p>Les informations ne sont pas correctes</p>}
       <form onSubmit={handleSubmit}>
-        <input type="text" name="username" required />
+        <input type="text" name="email" required />
         <input type="password" name="password" required />
         <button type="submit">Connexion</button>
       </form>
