@@ -119,7 +119,7 @@ const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => 
         className="c-canvas__game"
       ></canvas>
       <div ref={addPixelAnimRef} className='pixelAdd'>+1</div>
-      <HudInfo totalTimeInSec={10800} x={xPosition} y={yPosition} />
+      <HudInfo hide={hide} totalTimeInSec={10800} x={xPosition} y={yPosition} />
       <ColorBar
         hide={hide}
         currentColor={currentColor}
