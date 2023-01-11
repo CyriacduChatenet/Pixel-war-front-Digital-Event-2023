@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import ColorBar from "../ColorBar/ColorBar";
 import HudInfo from "../HudInfos/HudInfos";
 import ActionMenus from "../ActionsMenus/ActionsMenus";
+import { createPixelService, getPixel } from "../../../setup/services/game.service";
 
 const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => {
   const [xPosition, setXPosition] = useState(0);
@@ -76,8 +77,17 @@ const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => 
       y: y,
       color: currentColor,
     };
+    createPixelService(payload)
     // socket emit payload as "pixel"
     createPixel(ctx, x, y, currentColorChoice);
+  }
+  async function drawPixelOnInit() {
+    const game = gameRef.current;
+    const ctx = game.getContext("2d")
+    const pixels = await getPixel()
+    pixels.map(pixel => {
+      createPixel(ctx, pixel.x, pixel.y, pixel.color)
+    })
   }
 
   function drawGrids(ctx, width, height, cellWidth, cellHeight) {
@@ -102,7 +112,10 @@ const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => 
     game.height = document.body.clientHeight;
     const gridCtx = game.getContext("2d");
     drawGrids(gridCtx, game.width, game.height, gridCellSize, gridCellSize);
+    drawPixelOnInit()
+
   }, []);
+
   return (
     <div className="c-canvas">
       <div
