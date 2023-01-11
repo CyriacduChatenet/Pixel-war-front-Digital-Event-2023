@@ -1,0 +1,15 @@
+.action-menus {
+ position: absolute;
+ right: 4%;
+ top: 4%;
+
+ &__menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  &__item {
+   cursor: pointer;
+  }
+ }
+}

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import ActionMenus from "../ActionMenus/ActionMenus";
 import ColorBar from "../ColorBar/ColorBar";
 
 const Canva = ({currentColor, setCurrentColor}) => {
@@ -96,6 +97,7 @@ const Canva = ({currentColor, setCurrentColor}) => {
         className="c-canvas__game"
       ></canvas>
       <ColorBar currentColor={currentColor} setCurrentColor={setCurrentColor} />
+      <ActionMenus />
     </div>
   );
 };
