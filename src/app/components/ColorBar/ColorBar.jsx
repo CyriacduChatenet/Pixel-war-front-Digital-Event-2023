@@ -1,7 +1,6 @@
-
 import { useEffect, useMemo, useRef, useState } from "react";
 import useTimer from "../../../setup/context/timerContext";
-import arrowIcon from "../../assets/images/arrow.png"
+import arrowIcon from "../../assets/images/arrow.png";
 
 const ColorBar = ({ currentColor, setCurrentColor }) => {
   const [time, setTime] = useState(10);
@@ -101,14 +100,16 @@ const ColorBar = ({ currentColor, setCurrentColor }) => {
   };
 
   useMemo(() => {
-    setTimeout(() => {
-      setTime(time - 1);
-      if(time === 0) {
-        setNewPixelIsCreated(false);
-        setTime(10)
-      }
-    }, 1000);
-  }, [newPixelIsCreated, time, setNewPixelIsCreated])
+    if (newPixelIsCreated === true) {
+      setTimeout(() => {
+        setTime(time - 1);
+      }, 1000);
+    }
+    if (time === 0) {
+      setNewPixelIsCreated(false);
+      setTime(10);
+    }
+  }, [newPixelIsCreated, time, setNewPixelIsCreated]);
 
   return (
     <div
@@ -133,10 +134,12 @@ const ColorBar = ({ currentColor, setCurrentColor }) => {
               onClick={handleColorListNavigation}
             />
           </>
-        ) : <p>{renderTime()}</p>}
+        ) : (
+          <p>{renderTime()}</p>
+        )}
       </div>
     </div>
-  )
+  );
 };
 
 export default ColorBar;
