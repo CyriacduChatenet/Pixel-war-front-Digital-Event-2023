@@ -11,12 +11,13 @@
     background-color: white;
     padding: 15px 30px;
     border-radius: 50px;
+    gap: 10px;
   }
 
-.colorBtn {
+.color-item {
     background-color: #ff5a5f;
     height: 35px;
-    width: 35px;
+    min-width: 35px;
     border-radius: 50%;
     border: 1px solid transparent;
     transition: all 0.3s;
@@ -25,4 +26,27 @@
     justify-content: center;
     align-items: center;
     color: #fff;
+    scroll-snap-align: start;
   }
+.arrow-icon {
+    height: fit-content;
+    cursor: pointer;
+    position: fixed;
+    right: 3%;
+    transition: .5s;
+}
+.color-list {
+    display: flex;
+    justify-content: space-between;
+    max-width: 95%;
+    overflow-x: auto;
+    scroll-snap-type: x;
+    scroll-behavior: smooth;
+    gap: 15px
+}
+.color-list::-webkit-scrollbar {
+    display: none;
+  }
+.rotate {
+    transform: rotate(180deg);
+}
