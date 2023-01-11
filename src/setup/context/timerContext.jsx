@@ -11,7 +11,7 @@ export const TimerContextProvider = ({children}) => {
     useCallback(() => {
         let timeout = setTimeout(() => {
             setNewPixelIsCreated(false);
-        }, process.env.REACT_APP_TIMER_BETWEEN_TWO_PIXELS_CREATION)
+        }, 10000)
         clearTimeout(timeout);
     }, [newPixelIsCreated === true])
     return (

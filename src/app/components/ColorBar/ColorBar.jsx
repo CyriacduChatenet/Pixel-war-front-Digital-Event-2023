@@ -105,7 +105,7 @@ const ColorBar = ({ currentColor, setCurrentColor }) => {
       setTime(time - 1);
       if(time === 0) {
         setNewPixelIsCreated(false);
-        setTime(10);
+        setTime(10)
       }
     }, 1000);
   }, [newPixelIsCreated, time, setNewPixelIsCreated])
