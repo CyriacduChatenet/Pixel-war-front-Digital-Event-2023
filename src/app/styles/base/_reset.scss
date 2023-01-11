@@ -83,10 +83,6 @@ textarea:focus::placeholder {
  background: #f1f1f1;
 }
 
-::-webkit-scrollbar-thumb {
- background: $secondary-color;
-}
-
 ::-webkit-scrollbar-thumb:hover {
  background: #888;
 }
