@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+.pixelAdd {
+    position: absolute;
+    font-family: 'VT323', monospace;
+    color: red;
+    opacity: 0;
+    font-size: 50px;
+    z-index: 3;
+    top: 50%;
+    pointer-events: none;
+}
+
+@keyframes pixelAddAnim {
+0% {
+opacity: 0;
+transform: scale(0), translateY(-50px);
+}
+50% {
+    opacity: 1;
+    transform: translateY(-50px);
+}
+100% {
+    opacity: 0;
+    transform: scale(1) translateY(-50px);
+}
+}
