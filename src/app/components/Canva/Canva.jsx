@@ -2,8 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import ColorBar from "../ColorBar/ColorBar";
 import HudInfo from "../HudInfos/HudInfos";
 import ActionMenus from "../ActionsMenus/ActionsMenus";
+import useTimer from "../../../setup/context/timerContext";
 
-const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => {
+const Canva = ({ currentColor, setCurrentColor }) => {
+  const { setNewPixelIsCreated } = useTimer()
   const [xPosition, setXPosition] = useState(0);
   const [yPosition, setYPosition] = useState(0);
   const [hide, setHide] = useState(false);
@@ -57,6 +59,7 @@ const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => 
     ctx.beginPath();
     ctx.fillStyle = color;
     ctx.fillRect(x, y, gridCellSize, gridCellSize);
+    setNewPixelIsCreated(true)
     setPixelColor([x, y])
     addPixelAnimRef.current.style.top = y + "px"
     addPixelAnimRef.current.style.left = x + "px"
