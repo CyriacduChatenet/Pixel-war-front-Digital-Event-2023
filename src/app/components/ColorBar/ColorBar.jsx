@@ -1,8 +1,11 @@
-import { useRef } from "react";
-import { SliderPicker } from "react-color";
-import arrowIcon from "../../assets/images/arrow.png"
+import { useEffect, useMemo, useRef, useState } from "react";
+import useTimer from "../../../setup/context/timerContext";
+import arrowIcon from "../../assets/images/arrow.png";
 
 const ColorBar = ({ currentColor, setCurrentColor }) => {
+  const [time, setTime] = useState(10);
+  const { newPixelIsCreated, setNewPixelIsCreated } = useTimer();
+
   const colorList = [
     "#FFEBEE",
     "#FCE4EC",
@@ -43,59 +46,97 @@ const ColorBar = ({ currentColor, setCurrentColor }) => {
     "#A1887F",
     "#E0E0E0",
     "#90A4AE",
-    "#000"
-  ]
+    "#000",
+  ];
 
- const colorListRef = useRef(null)
- const arrowRef = useRef(null)
- let isRotate = false
+  const colorListRef = useRef(null);
+  const arrowRef = useRef(null);
+  let isRotate = false;
 
- const handleColorListNavigation = () => {
-  if (isRotate == false) {
-    colorListRef.current.scrollLeft += colorListRef.current.offsetWidth / 10
-    if (colorListRef.current.scrollLeft > colorListRef.current.offsetWidth * .9) {
-      arrowRef.current.classList.add("rotate")
-      isRotate = true
+  const handleColorListNavigation = () => {
+    if (isRotate == false) {
+      colorListRef.current.scrollLeft += colorListRef.current.offsetWidth / 10;
+      if (
+        colorListRef.current.scrollLeft >
+        colorListRef.current.offsetWidth * 0.9
+      ) {
+        arrowRef.current.classList.add("rotate");
+        isRotate = true;
+      }
+      return;
     }
-    return
-  }
-  if (isRotate == true) {
-    colorListRef.current.scrollLeft -= colorListRef.current.offsetWidth / 10
-    if (colorListRef.current.scrollLeft < colorListRef.current.offsetWidth * .1) {
-      arrowRef.current.classList.remove("rotate")
-      isRotate = false
+    if (isRotate == true) {
+      colorListRef.current.scrollLeft -= colorListRef.current.offsetWidth / 10;
+      if (
+        colorListRef.current.scrollLeft <
+        colorListRef.current.offsetWidth * 0.1
+      ) {
+        arrowRef.current.classList.remove("rotate");
+        isRotate = false;
+      }
+      return;
     }
-    return
-  }
- }
-
- const handleChangeComplete = (event) => {
-  for (let i = 1; i < colorListRef.current.childElementCount; i++) {
-    colorListRef.current.children[i].innerHTML = ``
-  }
-  event.target.innerHTML = `<i class="fa-solid fa-check"></i>`
-  setCurrentColor(event.target.style.backgroundColor);
   };
 
+  const handleChangeComplete = (event) => {
+    for (let i = 1; i < colorListRef.current.childElementCount; i++) {
+      colorListRef.current.children[i].innerHTML = ``;
+    }
+    event.target.innerHTML = `<i class="fa-solid fa-check"></i>`;
+    setCurrentColor(event.target.style.backgroundColor);
+  };
+
+  let minutes = Math.floor((time % 3600) / 60);
+  let seconds = Math.floor(time % 60);
+
+  const renderTime = () => {
+    if (seconds < 10) {
+      seconds = "0" + seconds;
+    }
+    if (minutes < 10) {
+      minutes = "0" + minutes;
+    }
+    return `${minutes} : ${seconds}`;
+  };
+
+  useMemo(() => {
+    if (newPixelIsCreated === true) {
+      setTimeout(() => {
+        setTime(time - 1);
+      }, 1000);
+    }
+    if (time === 0) {
+      setNewPixelIsCreated(false);
+      setTime(10);
+    }
+  }, [newPixelIsCreated, time, setNewPixelIsCreated]);
+
   return (
-    <div className="colorBar">
+    <div
+      className={"colorBar"}
+      style={newPixelIsCreated ? { width: "16rem", height: "4rem" } : null}
+    >
       <div className="color-list" ref={colorListRef}>
-    {colorList.map((color, index) => (
-      <div
-        key={index}
-        onClick={(event) => handleChangeComplete(event)}
-        style={{ backgroundColor: color }}
-        className="color-item"
-      >
+        {newPixelIsCreated === false ? (
+          <>
+            {colorList.map((color, index) => (
+              <div
+                key={index}
+                onClick={(event) => handleChangeComplete(event)}
+                style={{ backgroundColor: color }}
+                className="color-item"
+              ></div>
+            ))}
+            <img
+              ref={arrowRef}
+              src={arrowIcon}
+              className="arrow-icon"
+              onClick={handleColorListNavigation}
+            />
+          </>
+        ) : <p className="cooldown">{renderTime()}</p>}
+      </div>
     </div>
-    ))}
-    </div>
-    <img 
-    ref={arrowRef} 
-    src={arrowIcon} 
-    className="arrow-icon" 
-    onClick={handleColorListNavigation}/>
-  </div>
   );
 };
 

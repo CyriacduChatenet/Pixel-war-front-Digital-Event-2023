@@ -21,7 +21,6 @@ const createPixelService = async ({x, y, color}) => {
     }
     await setDoc(doc(firestoreDb, `game-${process.env.REACT_APP_GAME_KEY}`, `${newPixel.x}-${newPixel.y}`), newPixel)
 }
-// createPixel(1, 1, "red")
 
 export {
     getPixel,

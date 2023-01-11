@@ -2,9 +2,16 @@ import { useEffect, useRef, useState } from "react";
 import ColorBar from "../ColorBar/ColorBar";
 import HudInfo from "../HudInfos/HudInfos";
 import ActionMenus from "../ActionsMenus/ActionsMenus";
+<<<<<<< HEAD
 import { createPixelService, getPixel } from "../../../setup/services/game.service";
 
 const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => {
+=======
+import useTimer from "../../../setup/context/timerContext";
+
+const Canva = ({ currentColor, setCurrentColor, setPixelColor }) => {
+  const { setNewPixelIsCreated } = useTimer()
+>>>>>>> origin/develop
   const [xPosition, setXPosition] = useState(0);
   const [yPosition, setYPosition] = useState(0);
   const [hide, setHide] = useState(false);
@@ -58,6 +65,10 @@ const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => 
     ctx.beginPath();
     ctx.fillStyle = color;
     ctx.fillRect(x, y, gridCellSize, gridCellSize);
+<<<<<<< HEAD
+=======
+    setNewPixelIsCreated(true)
+>>>>>>> origin/develop
     setPixelColor([x, y])
     addPixelAnimRef.current.style.top = y + "px"
     addPixelAnimRef.current.style.left = x + "px"
@@ -132,7 +143,11 @@ const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => 
         className="c-canvas__game"
       ></canvas>
       <div ref={addPixelAnimRef} className='pixelAdd'>+1</div>
+<<<<<<< HEAD
       <HudInfo totalTimeInSec={10800} x={xPosition} y={yPosition} />
+=======
+      <HudInfo hide={hide} totalTimeInSec={10800} x={xPosition} y={yPosition} />
+>>>>>>> origin/develop
       <ColorBar
         hide={hide}
         currentColor={currentColor}
