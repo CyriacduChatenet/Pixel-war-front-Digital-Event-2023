@@ -117,7 +117,7 @@ const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => 
     const gridCtx = game.getContext("2d");
     drawGrids(gridCtx, game.width, game.height, gridCellSize, gridCellSize);
     drawPixelOnInit()
-    updatePixelsGrid()
+    updatePixelsGrid(game, createPixel)
 
   }, []);
 

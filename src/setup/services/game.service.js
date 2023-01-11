@@ -22,13 +22,12 @@ const createPixelService = async ({x, y, color}) => {
     await setDoc(doc(firestoreDb, `game-${process.env.REACT_APP_GAME_KEY}`, `${newPixel.x}-${newPixel.y}`), newPixel)
 }
 
-const updatePixelsGrid = async (gameRef, createPixel) => {
+const updatePixelsGrid = async (game, createPixel) => {
     const snapshot = onSnapshot(gamesCollection ,(snapshot) => {
         snapshot.docChanges().forEach( async (change) => {
             console.log(change);
-            // const game = gameRef.current;
-            // const ctx = game.getContext("2d")
-            // createPixel(ctx, change.x, change.y, change.color)
+            const ctx = game.getContext("2d")
+            createPixel(ctx, change.x, change.y, change.color)
         },
         (error) => {
             console.log("error => ", error);
