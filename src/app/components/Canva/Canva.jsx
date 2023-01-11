@@ -1,7 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import ColorBar from "../ColorBar/ColorBar";
+import HudInfo from "../HudInfos/HudInfos";
+import ActionMenus from "../ActionsMenus/ActionsMenus";
 
-const Canva = ({currentColor, setCurrentColor}) => {
+const Canva = ({ currentColor, setCurrentColor }) => {
+  const [xPosition, setXPosition] = useState(0);
+  const [yPosition, setYPosition] = useState(0);
+  const [hide, setHide] = useState(false);
   const gameRef = useRef(null);
   const cursorRef = useRef(null);
   //   "#FFEBEE",
@@ -34,8 +39,13 @@ const Canva = ({currentColor, setCurrentColor}) => {
   };
 
   const handleFollowMouse = (event) => {
+    const game = gameRef.current;
     const cursorLeft = event.clientX - cursorRef.current.offsetWidth / 2;
     const cursorTop = event.clientY - cursorRef.current.offsetHeight / 2;
+    const x = cursorRef.current.offsetLeft;
+    const y = cursorRef.current.offsetTop - game.offsetTop;
+    setXPosition(x / 10);
+    setYPosition(y / 10);
     cursorRef.current.style.left =
       Math.floor(cursorLeft / gridCellSize) * gridCellSize + "px";
     cursorRef.current.style.top =
@@ -56,8 +66,8 @@ const Canva = ({currentColor, setCurrentColor}) => {
     const payload = {
       x: x,
       y: y,
-      color: currentColor
-    }
+      color: currentColor,
+    };
     // socket emit payload as "pixel"
     createPixel(ctx, x, y, currentColorChoice);
   }
@@ -77,7 +87,7 @@ const Canva = ({currentColor, setCurrentColor}) => {
     }
     ctx.stroke();
   }
-  
+
   useEffect(() => {
     const game = gameRef.current;
     game.width = document.body.clientWidth;
@@ -87,7 +97,12 @@ const Canva = ({currentColor, setCurrentColor}) => {
   }, []);
   return (
     <div className="c-canvas">
-      <div id="cursor" className="c-canvas__cursor" ref={cursorRef} onClick={handleAddPixel}></div>
+      <div
+        id="cursor"
+        className="c-canvas__cursor"
+        ref={cursorRef}
+        onClick={handleAddPixel}
+      ></div>
       <canvas
         id="game"
         ref={gameRef}
@@ -95,7 +110,13 @@ const Canva = ({currentColor, setCurrentColor}) => {
         onMouseMove={(e) => handleFollowMouse(e)}
         className="c-canvas__game"
       ></canvas>
-      <ColorBar currentColor={currentColor} setCurrentColor={setCurrentColor} />
+      <HudInfo totalTimeInSec={10800} x={xPosition} y={yPosition} />
+      <ColorBar
+        hide={hide}
+        currentColor={currentColor}
+        setCurrentColor={setCurrentColor}
+      />
+      <ActionMenus setHide={setHide} hide={hide} />
     </div>
   );
 };
