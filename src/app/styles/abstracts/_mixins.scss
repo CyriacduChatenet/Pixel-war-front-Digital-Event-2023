@@ -1,0 +1,20 @@
+@mixin main-title {
+    font-family: $Unibody-black;
+    font-size: 56px;
+}
+@mixin secondary-title {
+    font-family: $Gantari;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 68px;
+}
+@mixin main-text {
+    font-family: $Gantari;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+}
+@mixin count-text {
+    font-family: $Unibody-black;
+    font-size: 64px;
+}

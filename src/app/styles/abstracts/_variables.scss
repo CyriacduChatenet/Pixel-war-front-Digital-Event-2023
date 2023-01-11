@@ -1,8 +1,27 @@
 // COLORS
-$secondary-color: #f5f5f5;
+$main-orange: #E27D41;
 
 // FONTS
 
-// TEXT SIZES
+    @font-face {
+        font-family: 'Unibody-black';
+        src: url('../../assets/Unibody_8_Black.ttf');
+    }
+    @font-face {
+        font-family: 'Unibody-bold';
+        src: url('../../assets/Unibody_8_Bold.ttf');
+    }
+    @font-face {
+        font-family: 'Unibody-regular';
+        src: url('../../assets/Unibody\ 8\ Regular.ttf');
+    }
+    @font-face {
+        font-family: 'Gantari';
+        src: url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@100;200;300;400;500;600;700;800;900&display=swap');
+    }
 
-// TEXT WEIGHTS
+    $Unibody-black: "Unibody-black";
+    $Unibody-bold: "Unibody-bold";
+    $Unibody-regular: "Unibody-regular";
+    $Gantari: "Gantari";
+

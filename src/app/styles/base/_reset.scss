@@ -33,6 +33,10 @@ section {
  vertical-align: baseline;
 }
 
+body{
+ overflow: hidden;
+}
+
 footer,
 header,
 nav,
@@ -77,10 +81,6 @@ textarea:focus::placeholder {
 
 ::-webkit-scrollbar-track {
  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
- background: $secondary-color;
 }
 
 ::-webkit-scrollbar-thumb:hover {

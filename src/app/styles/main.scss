@@ -1,11 +1,15 @@
-@import 'abstracts/variables';
-@import 'abstracts/mixins';
+@import "abstracts/variables";
+@import "abstracts/mixins";
 
-@import 'base/reset';
-@import 'base/typography';
+@import "base/reset";
+@import "base/typography";
 
-@import 'layout/navbar';
+@import "layout/navbar";
 
-@import 'components/buttons';
+@import "components/colorBar";
+@import "components/canvas";
+@import "components/actionsMenus";
+@import "components/rulesModal";
+@import "components/lastPixel";
 
-@import 'pages/auth';
+@import "pages/auth";
