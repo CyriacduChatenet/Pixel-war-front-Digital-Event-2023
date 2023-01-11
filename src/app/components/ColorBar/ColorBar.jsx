@@ -133,7 +133,7 @@ const ColorBar = ({ currentColor, setCurrentColor }) => {
               onClick={handleColorListNavigation}
             />
           </>
-        ) : <p>{renderTime()}</p>}
+        ) : <p className="cooldown">{renderTime()}</p>}
       </div>
     </div>
   )

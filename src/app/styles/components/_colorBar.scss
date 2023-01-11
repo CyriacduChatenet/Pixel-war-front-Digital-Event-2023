@@ -1,52 +1,64 @@
 .colorBar {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-    z-index: 2;
-    display: flex;
-    justify-content: space-between;
-    width: 70vw;
-    margin-bottom: 15px;
-    background-color: white;
-    padding: 15px 30px;
-    border-radius: 50px;
-    gap: 10px;
-  }
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  width: 70vw;
+  margin-bottom: 15px;
+  background-color: white;
+  padding: 15px 30px;
+  border-radius: 50px;
+  gap: 10px;
+}
+
+.cooldown {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: $Unibody-regular;
+}
 
 .color-item {
-    background-color: #ff5a5f;
-    height: 35px;
-    min-width: 35px;
-    border-radius: 50%;
-    border: 1px solid transparent;
-    transition: all 0.3s;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    scroll-snap-align: start;
-  }
+  background-color: #ff5a5f;
+  height: 35px;
+  min-width: 35px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  scroll-snap-align: start;
+}
+
 .arrow-icon {
-    height: fit-content;
-    cursor: pointer;
-    position: fixed;
-    right: 3%;
-    transition: .5s;
+  height: fit-content;
+  cursor: pointer;
+  position: fixed;
+  right: 3%;
+  transition: .5s;
 }
+
 .color-list {
-    display: flex;
-    justify-content: space-between;
-    max-width: 95%;
-    overflow-x: auto;
-    scroll-snap-type: x;
-    scroll-behavior: smooth;
-    gap: 15px
+  display: flex;
+  justify-content: space-between;
+  max-width: 95%;
+  overflow-x: auto;
+  scroll-snap-type: x;
+  scroll-behavior: smooth;
+  gap: 15px
 }
+
 .color-list::-webkit-scrollbar {
-    display: none;
-  }
+  display: none;
+}
+
 .rotate {
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
