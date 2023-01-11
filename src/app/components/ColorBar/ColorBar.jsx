@@ -1,7 +1,10 @@
+
 import { useEffect, useMemo, useRef, useState } from "react";
 import { SliderPicker } from "react-color";
 import useTimer from "../../../setup/context/timerContext";
-import arrowIcon from "../../assets/images/arrow.png";
+import { useRef } from "react";
+import { SliderPicker } from "react-color";
+import arrowIcon from "../../assets/images/arrow.png"
 
 const ColorBar = ({ currentColor, setCurrentColor }) => {
   const [time, setTime] = useState(10);
@@ -135,6 +138,59 @@ const ColorBar = ({ currentColor, setCurrentColor }) => {
         ) : <p>{renderTime()}</p>}
       </div>
     </div>
+    "#000"
+  ]
+
+ const colorListRef = useRef(null)
+ const arrowRef = useRef(null)
+ let isRotate = false
+
+ const handleColorListNavigation = () => {
+  if (isRotate == false) {
+    colorListRef.current.scrollLeft += colorListRef.current.offsetWidth / 10
+    if (colorListRef.current.scrollLeft > colorListRef.current.offsetWidth * .9) {
+      arrowRef.current.classList.add("rotate")
+      isRotate = true
+    }
+    return
+  }
+  if (isRotate == true) {
+    colorListRef.current.scrollLeft -= colorListRef.current.offsetWidth / 10
+    if (colorListRef.current.scrollLeft < colorListRef.current.offsetWidth * .1) {
+      arrowRef.current.classList.remove("rotate")
+      isRotate = false
+    }
+    return
+  }
+ }
+
+ const handleChangeComplete = (event) => {
+  for (let i = 1; i < colorListRef.current.childElementCount; i++) {
+    colorListRef.current.children[i].innerHTML = ``
+  }
+  event.target.innerHTML = `<i class="fa-solid fa-check"></i>`
+  setCurrentColor(event.target.style.backgroundColor);
+  };
+
+  return (
+    <div className="colorBar">
+      <div className="color-list" ref={colorListRef}>
+    {colorList.map((color, index) => (
+      <div
+        key={index}
+        onClick={(event) => handleChangeComplete(event)}
+        style={{ backgroundColor: color }}
+        className="color-item"
+      >
+    </div>
+    ))}
+    </div>
+    <img 
+    ref={arrowRef} 
+    src={arrowIcon} 
+    className="arrow-icon" 
+    onClick={handleColorListNavigation}/>
+  </div>
   );
 };
 

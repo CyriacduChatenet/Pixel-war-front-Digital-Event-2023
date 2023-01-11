@@ -10,6 +10,7 @@ const Canva = ({ currentColor, setCurrentColor }) => {
   const [yPosition, setYPosition] = useState(0);
   const [hide, setHide] = useState(false);
   const gameRef = useRef(null);
+  const addPixelAnimRef = useRef(null)
   const cursorRef = useRef(null);
   //   "#FFEBEE",
   //   "#FCE4EC",
@@ -59,6 +60,13 @@ const Canva = ({ currentColor, setCurrentColor }) => {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, gridCellSize, gridCellSize);
     setNewPixelIsCreated(true)
+    setPixelColor([x, y])
+    addPixelAnimRef.current.style.top = y + "px"
+    addPixelAnimRef.current.style.left = x + "px"
+    addPixelAnimRef.current.style.animation = "pixelAddAnim ease-in-out 1s forwards"
+    addPixelAnimRef.current.addEventListener('animationend', () => {
+      addPixelAnimRef.current.style.animation = ""
+    });
   }
 
   function addPixelIntoGame() {
@@ -113,6 +121,7 @@ const Canva = ({ currentColor, setCurrentColor }) => {
         onMouseMove={(e) => handleFollowMouse(e)}
         className="c-canvas__game"
       ></canvas>
+      <div ref={addPixelAnimRef} className='pixelAdd'>+1</div>
       <HudInfo totalTimeInSec={10800} x={xPosition} y={yPosition} />
       <ColorBar
         hide={hide}
