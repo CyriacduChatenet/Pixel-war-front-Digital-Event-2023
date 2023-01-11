@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import ColorBar from "../ColorBar/ColorBar";
 import HudInfo from "../HudInfos/HudInfos";
 import ActionMenus from "../ActionsMenus/ActionsMenus";
-import { createPixelService, getPixel } from "../../../setup/services/game.service";
+import { createPixelService, getPixel, updatePixelsGrid } from "../../../setup/services/game.service";
 
 import useTimer from "../../../setup/context/timerContext";
 
@@ -117,6 +117,7 @@ const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => 
     const gridCtx = game.getContext("2d");
     drawGrids(gridCtx, game.width, game.height, gridCellSize, gridCellSize);
     drawPixelOnInit()
+    updatePixelsGrid()
 
   }, []);
 

@@ -1,5 +1,5 @@
 import { firestoreDb } from "../config/firebase.config"
-import { collection, getDocs, query, where, Timestamp, addDoc, setDoc, doc } from "firebase/firestore"
+import { collection, getDocs, query, where, Timestamp, addDoc, setDoc, doc, onSnapshot } from "firebase/firestore"
 const paramCollection = collection(firestoreDb, "param")
 
 const gamesCollection = collection(firestoreDb, `game-${process.env.REACT_APP_GAME_KEY}`)
@@ -22,7 +22,22 @@ const createPixelService = async ({x, y, color}) => {
     await setDoc(doc(firestoreDb, `game-${process.env.REACT_APP_GAME_KEY}`, `${newPixel.x}-${newPixel.y}`), newPixel)
 }
 
+const updatePixelsGrid = async (gameRef, createPixel) => {
+    const snapshot = onSnapshot(gamesCollection ,(snapshot) => {
+        snapshot.docChanges().forEach( async (change) => {
+            console.log(change);
+            // const game = gameRef.current;
+            // const ctx = game.getContext("2d")
+            // createPixel(ctx, change.x, change.y, change.color)
+        },
+        (error) => {
+            console.log("error => ", error);
+        })
+    })
+}
+
 export {
     getPixel,
-    createPixelService
+    createPixelService,
+    updatePixelsGrid
 }
