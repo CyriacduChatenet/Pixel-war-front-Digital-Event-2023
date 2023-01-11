@@ -4,7 +4,7 @@ import HudInfo from "../HudInfos/HudInfos";
 import ActionMenus from "../ActionsMenus/ActionsMenus";
 import useTimer from "../../../setup/context/timerContext";
 
-const Canva = ({ currentColor, setCurrentColor }) => {
+const Canva = ({ currentColor, setCurrentColor, setPixelColor }) => {
   const { setNewPixelIsCreated } = useTimer()
   const [xPosition, setXPosition] = useState(0);
   const [yPosition, setYPosition] = useState(0);

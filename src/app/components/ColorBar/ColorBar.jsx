@@ -1,9 +1,6 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { SliderPicker } from "react-color";
 import useTimer from "../../../setup/context/timerContext";
-import { useRef } from "react";
-import { SliderPicker } from "react-color";
 import arrowIcon from "../../assets/images/arrow.png"
 
 const ColorBar = ({ currentColor, setCurrentColor }) => {
