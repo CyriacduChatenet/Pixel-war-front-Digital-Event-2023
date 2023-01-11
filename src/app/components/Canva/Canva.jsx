@@ -1,7 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import ActionMenus from "../ActionsMenus/ActionsMenus";
 import ColorBar from "../ColorBar/ColorBar";
 
-const Canva = ({currentColor, setCurrentColor}) => {
+const Canva = ({ currentColor, setCurrentColor }) => {
+  const [hide, setHide] = useState(false)
   const gameRef = useRef(null);
   const cursorRef = useRef(null);
   //   "#FFEBEE",
@@ -95,7 +97,8 @@ const Canva = ({currentColor, setCurrentColor}) => {
         onMouseMove={(e) => handleFollowMouse(e)}
         className="c-canvas__game"
       ></canvas>
-      <ColorBar currentColor={currentColor} setCurrentColor={setCurrentColor} />
+      <ColorBar hide={hide} currentColor={currentColor} setCurrentColor={setCurrentColor} />
+      <ActionMenus setHide={setHide} hide={hide} />
     </div>
   );
 };

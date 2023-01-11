@@ -1,0 +1,36 @@
+.action-menus {
+ position: absolute;
+ right: 4%;
+ top: 4%;
+
+ &__menu {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+
+  &__item {
+   cursor: pointer;
+   transition: 0.3s ease-in-out all;
+
+   &:hover {
+    animation: pulse 0.5s ease-in-out infinite;
+   }
+  }
+ }
+}
+
+.hide {
+ display: none;
+}
+
+@keyframes pulse {
+ 0%{
+  transform: scale(1);
+ }
+ 50%{
+  transform: scale(1.1);
+ }
+ 100%{
+  transform: scale(1);
+ }
+}
