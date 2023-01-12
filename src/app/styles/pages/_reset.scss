@@ -60,6 +60,8 @@
         text-align: center;
         width: 100%;
         margin-bottom: 12px;
+        margin: 0 auto 12px auto;
+        width: calc(100% - 36px);
     }
     &__register {
         font-family: $Gantari;

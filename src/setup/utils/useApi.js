@@ -59,7 +59,7 @@ export const createUser = async (data) => {
     };
     await setDoc(doc(firestoreDb, "users", user.uid), userData);
   } catch (error) {
-    console.log(error);
+    throw new Error(error.message);
   }
 };
 

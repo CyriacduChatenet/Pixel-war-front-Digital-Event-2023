@@ -50,7 +50,11 @@ const ResetPassword = () => {
           placeholder="Adresse mail"
           onInput={handleChange}
         />
-        <button type="submit">Envoyer la demande</button>
+        <button type="submit">
+          <div className="l-login__before"></div>
+          Envoyer la demande
+          <div className="l-login__after"></div>
+        </button>
       </form>
       <Link className="l-login__forgot" to="/connexion">
         Annuler

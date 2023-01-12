@@ -52,7 +52,11 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit">Connexion</button>
+        <button type="submit">
+          <div className="l-login__before"></div>
+          Connexion
+          <div className="l-login__after"></div>
+        </button>
       </form>
       <Link to="/reset" className="l-login__forgot">
         Mot de passe oubliée

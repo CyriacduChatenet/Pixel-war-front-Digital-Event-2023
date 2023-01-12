@@ -4,7 +4,7 @@ import { useState } from "react";
 import { createUser } from "../../setup/utils/useApi";
 
 const Register = () => {
-  const [error, setError] = useState("");
+  const [result, setResult] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +17,17 @@ const Register = () => {
       password: password,
       email: email,
     };
-    createUser(data);
+    createUser(data)
+      .then(() => {
+        setResult("Le compte a bien été créé");
+      })
+      .catch((e) => {
+        if (e.stack.includes("email-already-in-use")) {
+          setResult("L'email est déjà utilisé");
+        } else {
+          setResult("Une erreur est survenue");
+        }
+      });
     // const data = { username, password, email, team };
     // fetch(process.env.REACT_APP_API + "/auth/signup", {
     //   method: "POST",
@@ -35,6 +45,15 @@ const Register = () => {
     //   });
   };
 
+  const renderResult = () => {
+    if (result === "") return;
+    if (result === "Le compte a bien été créé") {
+      return <p className="l-login__success">{result}</p>;
+    } else {
+      return <p className="l-login__error">{result}</p>;
+    }
+  };
+
   // useEffect(() => {
   //   fetch(process.env.REACT_APP_API + "/team")
   //     .then((res) => {
@@ -50,7 +69,7 @@ const Register = () => {
       <h1>
         Créé ton compte pour rejoindre la <br /> bataille !
       </h1>
-      {error !== "" && <p className="l-login__error">{error}</p>}
+      {renderResult()}
       <form onSubmit={handleSubmit}>
         <input
           type="email"
@@ -72,7 +91,11 @@ const Register = () => {
           placeholder="Mot de passe"
           required
         />
-        <button type="submit">S'inscrire</button>
+        <button type="submit">
+          <div className="l-login__before"></div>
+          S'inscrire
+          <div className="l-login__after"></div>
+        </button>
       </form>
       <p className="l-login__register">
         Déjà un compte ? <Link to="/connexion">Connecte-toi</Link>

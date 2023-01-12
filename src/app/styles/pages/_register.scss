@@ -41,9 +41,9 @@
         background-color: #e27d41;
         filter: drop-shadow(0px 4px 12px #130921);
         border: none;
-        margin-top: 8px;
-        margin-bottom: 32px;
-        width: 100%;
+        margin: 8px auto 32px auto;
+        width: calc(100% - 36px);
+        cursor: pointer;
     }
     &__forgot {
         display: block;
