@@ -1,18 +1,16 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import { createUser } from "../../setup/utils/useApi";
 
 const Register = () => {
   const [error, setError] = useState("");
-  const [teams, setTeams] = useState([]);
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const username = e.target.username.value;
     const email = e.target.email.value;
-    const team = e.target.teams.value;
+    // const team = e.target.teams.value;
     const password = e.target.password.value;
     const passwordConfirm = e.target["password-confirm"].value;
     if (password !== passwordConfirm) {
@@ -22,9 +20,9 @@ const Register = () => {
     const data = {
       username: username,
       password: password,
-      email: email
-    }
-    createUser(data)
+      email: email,
+    };
+    createUser(data);
     // const data = { username, password, email, team };
     // fetch(process.env.REACT_APP_API + "/auth/signup", {
     //   method: "POST",
@@ -42,50 +40,47 @@ const Register = () => {
     //   });
   };
 
-  useEffect(() => {
-    fetch(process.env.REACT_APP_API + "/team")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setTeams(data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(process.env.REACT_APP_API + "/team")
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((data) => {
+  //       setTeams(data);
+  //     });
+  // }, []);
 
   return (
-    <>
-      <h1>Register</h1>
+    <div className="l-register">
+      <h1>Créé ton compte pour rejoindre la bataille !</h1>
       {error !== "" && <p>{error}</p>}
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Nom d'utilisateur</label>
-        <input type="text" name="username" id="username" required />
-        <label htmlFor="email">Email</label>
-        <input type="email" name="email" id="email" required />
-        <label htmlFor="teams">Equipe</label>
-        <select name="teams" id="teams">
-          <option value="" style={{ display: "none" }}>
-            Choisir une équipe
-          </option>
-          {teams.map((team) => {
-            return (
-              <option key={team.id} value={team.id}>
-                {team.name}
-              </option>
-            );
-          })}
-        </select>
-        <label htmlFor="password">Mot de passe</label>
-        <input type="password" name="password" required />
-        <label htmlFor="password-confirm">Confirmer le mot de passe</label>
         <input
-          type="password"
-          name="password-confirm"
-          id="password-confirm"
+          type="email"
+          name="email"
+          id="email"
+          placeholder="E-mail"
           required
         />
-        <button type="submit">Inscription</button>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Nom d'utilisateur"
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Mot de passe"
+          required
+        />
+        <button type="submit">S'inscrire</button>
       </form>
-    </>
+      <p className="l-login__register">
+        Déjà un compte ? <Link to="/connexion">Connecte-toi</Link>
+      </p>
+    </div>
   );
 };
 export default Register;
