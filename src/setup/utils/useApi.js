@@ -2,6 +2,7 @@ import axios from "axios";
 import { getTokenFromLocalstorage } from "./authorization";
 import { firestoreDb } from "./firebase";
 import { createUserWithEmailAndPassword, getAuth, sendPasswordResetEmail, signInWithCredential, signInWithCustomToken, signInWithEmailAndPassword, updateProfile } from "firebase/auth"
+import { collection, doc, setDoc } from "firebase/firestore";
 
 /** headers REQUEST **/
 
@@ -11,22 +12,43 @@ const apiurl = process.env.REACT_APP_API;
 
 export const createUser = async (data) => {
   const auth = getAuth()
-  createUserWithEmailAndPassword(auth, data.email, data.password)
-  .then((userCredential) => {
+  // createUserWithEmailAndPassword(auth, data.email, data.password)
+  // .then((userCredential) => {
+  //   const user = userCredential.user;
+  //   console.log(user);
+  //   updateProfile(user, {
+  //     displayName: data.username
+  //   })
+  //   .then(() => {
+  //     localStorage.setItem("token", user.accessToken);
+  //   })
+  //   .catch((error) => {
+  //     console.log(error.message)
+  //   })
+  // })
+  // .catch((error) => {
+  //   console.log(error.message)
+  // });
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password)
     const user = userCredential.user;
-    updateProfile(user, {
+    await updateProfile(user, {
       displayName: data.username
     })
-    .then(() => {
-      localStorage.setItem("token", user.accessToken);
-    })
-    .catch((error) => {
-      console.log(error.message)
-    })
-  })
-  .catch((error) => {
-    console.log(error.message)
-  });
+    localStorage.setItem("token", user.accessToken);
+    localStorage.setItem("uid", user.uid)
+    const userData = {
+      uid: user.uid,
+      email: data.email,
+      username: data.username,
+      totalScore: 0,
+      is_ban: false
+    }
+    await setDoc(doc(firestoreDb, "users", user.uid), userData)
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export const connectUser = async (data) => {
