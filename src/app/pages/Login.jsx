@@ -5,18 +5,22 @@ import { useState } from "react";
 const Login = () => {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     const data = { email, password };
-    login(data)
-      .then(() => {
-        navigate("/");
-      })
-      .catch((e) => {
+    
+
+      try{
+        const response = await login(data)
+        console.log(response);
+        if(response){
+          navigate("/");
+        }
+      }catch(e){
         setError(true);
-      });
+      }
   };
 
   const handleResetPassword = () => {
