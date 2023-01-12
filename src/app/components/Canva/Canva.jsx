@@ -6,6 +6,7 @@ import ghost from "../../assets/images/ghost.png";
 import {
   createPixelService,
   getPixel,
+  getTimer,
   updatePixelsGrid,
 } from "../../../setup/services/game.service";
 
@@ -28,6 +29,7 @@ const Canva = ({
   const gameRef = useRef(null);
   const addPixelAnimRef = useRef(null);
   const cursorRef = useRef(null);
+  const [time, setTime] = useState(0);
   //   "#FFEBEE",
   //   "#FCE4EC",
   //   "#F3E5F5",
@@ -143,6 +145,7 @@ const Canva = ({
   }
 
   useEffect(() => {
+    getTimer(setTime)
     const game = gameRef.current;
     game.width = document.body.clientWidth;
     game.height = document.body.clientHeight;
@@ -150,7 +153,6 @@ const Canva = ({
     drawGrids(gridCtx, game.width, game.height, gridCellSize, gridCellSize);
     drawPixelOnInit();
     updatePixelsGrid(game, createPixel);
-
     setTimeout(() => {
       setStillTest(false);
     }, 5000);
@@ -174,7 +176,9 @@ const Canva = ({
       <div ref={addPixelAnimRef} className="pixelAdd">
         +1
       </div>
-      <HudInfo hide={hide} totalTimeInSec={10800} x={xPosition} y={yPosition} />
+      {time && 
+        <HudInfo hide={hide} totalTimeInSec={time} x={xPosition} y={yPosition} />
+      }
       <ColorBar
         hide={hide}
         currentColor={currentColor}

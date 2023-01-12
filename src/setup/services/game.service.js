@@ -2,15 +2,12 @@ import { firestoreDb } from "../config/firebase.config";
 import {
   collection,
   getDocs,
-  query,
-  where,
-  Timestamp,
-  addDoc,
   setDoc,
   doc,
   onSnapshot,
   getDoc,
   updateDoc,
+  query,
 } from "firebase/firestore";
 const paramCollection = collection(firestoreDb, "param");
 
@@ -88,4 +85,18 @@ const updatePixelsGrid = async (game, createPixel) => {
   });
 };
 
-export { getPixel, createPixelService, updatePixelsGrid };
+const getUserScore = async (userId) => {
+    const user = await getDoc(doc(firestoreDb, 'users', userId))
+    return user.data().totalScore
+}
+
+const getTimer = async (setTime) => {
+    const game = await getDoc(doc(firestoreDb, 'param', `game-${process.env.REACT_APP_GAME_KEY}`))
+    console.log("game => ", game.data());
+    const now = Date.now() / 1000
+    const timeLeft = game.data().finishAt.seconds - now
+    console.log("timeLeft => ", parseInt(timeLeft));
+    setTime(parseInt(timeLeft))
+}
+
+export { getPixel, createPixelService, updatePixelsGrid, getUserScore, getTimer };
