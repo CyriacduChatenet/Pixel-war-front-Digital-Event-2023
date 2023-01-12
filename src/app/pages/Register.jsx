@@ -52,7 +52,9 @@ const Register = () => {
 
   return (
     <div className="l-register">
-      <h1>Créé ton compte pour rejoindre la bataille !</h1>
+      <h1>
+        Créé ton compte pour rejoindre la <br /> bataille !
+      </h1>
       {error !== "" && <p className="l-login__error">{error}</p>}
       <form onSubmit={handleSubmit}>
         <input

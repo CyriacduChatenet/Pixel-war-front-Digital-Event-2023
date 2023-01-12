@@ -28,7 +28,10 @@ const Login = () => {
 
   return (
     <div className="l-login">
-      <h1>Connecte-toi et rejoins la bataille !</h1>
+      <h1>
+        Connecte-toi et rejoins la
+        <br /> bataille !
+      </h1>
       {error && (
         <p className="l-login__error">Les informations ne sont pas correctes</p>
       )}

@@ -1,4 +1,4 @@
-.l-register {
+.l-reset {
     width: 100%;
     max-width: 580px;
     position: absolute;
@@ -22,9 +22,11 @@
         padding: 12px 24px;
         border: 0;
         border-bottom: 1px solid #e27d41;
-        margin-bottom: 24px;
         &::placeholder {
             color: #180f24;
+        }
+        &:first-of-type {
+            margin-bottom: 24px;
         }
     }
     button {
@@ -44,6 +46,7 @@
         margin-top: 8px;
         margin-bottom: 32px;
         width: 100%;
+        cursor: pointer;
     }
     &__forgot {
         display: block;
