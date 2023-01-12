@@ -77,7 +77,7 @@ const Canva = ({
     ctx.fillStyle = color;
     ctx.fillRect(x, y, gridCellSize, gridCellSize);
     if (!init) {
-      const timestampTimer = Math.floor((new Date().getTime() + 60000) / 1000);
+      const timestampTimer = Math.floor((new Date().getTime() + process.env.REACT_APP_TIME_STOP) / 1000);
       createCookie("Google Analytics", timestampTimer, 1);
       setNewPixelIsCreated(true);
     }
