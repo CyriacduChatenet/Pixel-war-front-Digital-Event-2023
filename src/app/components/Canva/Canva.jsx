@@ -2,17 +2,26 @@ import { useEffect, useRef, useState } from "react";
 import ColorBar from "../ColorBar/ColorBar";
 import HudInfo from "../HudInfos/HudInfos";
 import ActionMenus from "../ActionsMenus/ActionsMenus";
-import { createPixelService, getPixel, updatePixelsGrid } from "../../../setup/services/game.service";
+import {
+  createPixelService,
+  getPixel,
+  updatePixelsGrid,
+} from "../../../setup/services/game.service";
 
 import useTimer from "../../../setup/context/timerContext";
 
-const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => {
-  const { setNewPixelIsCreated } = useTimer()
+const Canva = ({
+  currentColor,
+  setCurrentColor,
+  pixelColor,
+  setPixelColor,
+}) => {
+  const { setNewPixelIsCreated, newPixelIsCreated } = useTimer();
   const [xPosition, setXPosition] = useState(0);
   const [yPosition, setYPosition] = useState(0);
   const [hide, setHide] = useState(false);
   const gameRef = useRef(null);
-  const addPixelAnimRef = useRef(null)
+  const addPixelAnimRef = useRef(null);
   const cursorRef = useRef(null);
   //   "#FFEBEE",
   //   "#FCE4EC",
@@ -57,17 +66,20 @@ const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => 
       Math.floor(cursorTop / gridCellSize) * gridCellSize + "px";
   };
 
-  function createPixel(ctx, x, y, color) {
+  function createPixel(ctx, x, y, color, init = false) {
     ctx.beginPath();
     ctx.fillStyle = color;
     ctx.fillRect(x, y, gridCellSize, gridCellSize);
-    setNewPixelIsCreated(true)
-    setPixelColor([x, y])
-    addPixelAnimRef.current.style.top = y + "px"
-    addPixelAnimRef.current.style.left = x + "px"
-    addPixelAnimRef.current.style.animation = "pixelAddAnim ease-in-out 1s forwards"
-    addPixelAnimRef.current.addEventListener('animationend', () => {
-      addPixelAnimRef.current.style.animation = ""
+    if (!init) {
+      setNewPixelIsCreated(true);
+    }
+    setPixelColor([x, y]);
+    addPixelAnimRef.current.style.top = y + "px";
+    addPixelAnimRef.current.style.left = x + "px";
+    addPixelAnimRef.current.style.animation =
+      "pixelAddAnim ease-in-out 1s forwards";
+    addPixelAnimRef.current.addEventListener("animationend", () => {
+      addPixelAnimRef.current.style.animation = "";
     });
   }
 
@@ -81,17 +93,17 @@ const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => 
       y: y,
       color: currentColor,
     };
-    createPixelService(payload)
+    createPixelService(payload);
     // socket emit payload as "pixel"
     createPixel(ctx, x, y, currentColorChoice);
   }
   async function drawPixelOnInit() {
     const game = gameRef.current;
-    const ctx = game.getContext("2d")
-    const pixels = await getPixel()
-    pixels.map(pixel => {
-      createPixel(ctx, pixel.x, pixel.y, pixel.color)
-    })
+    const ctx = game.getContext("2d");
+    const pixels = await getPixel();
+    pixels.forEach((pixel) => {
+      createPixel(ctx, pixel.x, pixel.y, pixel.color, true);
+    });
   }
 
   function drawGrids(ctx, width, height, cellWidth, cellHeight) {
@@ -116,9 +128,8 @@ const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => 
     game.height = document.body.clientHeight;
     const gridCtx = game.getContext("2d");
     drawGrids(gridCtx, game.width, game.height, gridCellSize, gridCellSize);
-    drawPixelOnInit()
-    updatePixelsGrid(game, createPixel)
-
+    drawPixelOnInit();
+    updatePixelsGrid(game, createPixel);
   }, []);
 
   return (
@@ -136,7 +147,9 @@ const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => 
         onMouseMove={(e) => handleFollowMouse(e)}
         className="c-canvas__game"
       ></canvas>
-      <div ref={addPixelAnimRef} className='pixelAdd'>+1</div>
+      <div ref={addPixelAnimRef} className="pixelAdd">
+        +1
+      </div>
       <HudInfo hide={hide} totalTimeInSec={10800} x={xPosition} y={yPosition} />
       <ColorBar
         hide={hide}
