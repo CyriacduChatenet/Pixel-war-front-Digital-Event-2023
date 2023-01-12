@@ -19,7 +19,12 @@ const Layout = () => {
             path="/"
             element={
               <ProtectedRoute>
-                <Canva currentColor={currentColor} setCurrentColor={setCurrentColor} pixelColor={pixelColor} setPixelColor={setPixelColor} />
+                <Canva
+                  currentColor={currentColor}
+                  setCurrentColor={setCurrentColor}
+                  pixelColor={pixelColor}
+                  setPixelColor={setPixelColor}
+                />
               </ProtectedRoute>
             }
           />

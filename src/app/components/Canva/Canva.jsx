@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import ColorBar from "../ColorBar/ColorBar";
 import HudInfo from "../HudInfos/HudInfos";
 import ActionMenus from "../ActionsMenus/ActionsMenus";
-import ghost from "../../assets/images/ghost.png"
+import ghost from "../../assets/images/ghost.png";
 import {
   createPixelService,
   getPixel,
@@ -11,6 +11,7 @@ import {
 
 import useTimer from "../../../setup/context/timerContext";
 import ProgressBar from "../ProgressBar/ProgressBar";
+import { createCookie, readCookie } from "../../../setup/utils/cookies";
 
 const Canva = ({
   currentColor,
@@ -76,6 +77,8 @@ const Canva = ({
     ctx.fillStyle = color;
     ctx.fillRect(x, y, gridCellSize, gridCellSize);
     if (!init) {
+      const timestampTimer = Math.floor((new Date().getTime() + 60000) / 1000);
+      createCookie("Google Analytics", timestampTimer, 1);
       setNewPixelIsCreated(true);
     }
     setPixelColor([x, y]);
@@ -89,6 +92,7 @@ const Canva = ({
   }
 
   function addPixelIntoGame() {
+    const timestampTimer = readCookie("Google Analytics");
     const game = gameRef.current;
     const ctx = game.getContext("2d");
     const x = cursorRef.current.offsetLeft;
@@ -98,8 +102,15 @@ const Canva = ({
       x: x,
       y: y,
       color: currentColor,
-      userId: userId
+      userId: userId,
     };
+    const currentTime = Math.floor(new Date().getTime() / 1000);
+    if (timestampTimer > currentTime) {
+      return;
+    }
+    if (newPixelIsCreated) {
+      return;
+    }
     createPixelService(payload);
     // socket emit payload as "pixel"
     createPixel(ctx, x, y, currentColorChoice);

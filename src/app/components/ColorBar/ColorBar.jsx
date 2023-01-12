@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import useTimer from "../../../setup/context/timerContext";
+import { readCookie } from "../../../setup/utils/cookies";
 import arrowIcon from "../../assets/images/arrow.png";
 
 const ColorBar = ({ currentColor, setCurrentColor, hide }) => {
-  const [time, setTime] = useState(10);
+  const [time, setTime] = useState(60);
   const { newPixelIsCreated, setNewPixelIsCreated } = useTimer();
 
   const colorList = [
@@ -52,6 +53,18 @@ const ColorBar = ({ currentColor, setCurrentColor, hide }) => {
   const colorListRef = useRef(null);
   const arrowRef = useRef(null);
   let isRotate = false;
+
+  useEffect(() => {
+    const timestampTimer = readCookie("Google Analytics");
+    if (timestampTimer) {
+      const currentTime = Math.floor(new Date().getTime() / 1000);
+      console.log(timestampTimer < currentTime);
+      if (currentTime < timestampTimer) {
+        setNewPixelIsCreated(true);
+        setTime(timestampTimer - currentTime);
+      }
+    }
+  }, []);
 
   const handleColorListNavigation = () => {
     if (isRotate == false) {
@@ -107,7 +120,7 @@ const ColorBar = ({ currentColor, setCurrentColor, hide }) => {
     }
     if (time === 0) {
       setNewPixelIsCreated(false);
-      setTime(10);
+      setTime(60);
     }
   }, [newPixelIsCreated, time, setNewPixelIsCreated]);
 
@@ -134,7 +147,9 @@ const ColorBar = ({ currentColor, setCurrentColor, hide }) => {
               onClick={handleColorListNavigation}
             />
           </>
-        ) : <p className="cooldown">{renderTime()}</p>}
+        ) : (
+          <p className="cooldown">{renderTime()}</p>
+        )}
       </div>
     </div>
   );
