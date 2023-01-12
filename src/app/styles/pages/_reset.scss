@@ -1,0 +1,97 @@
+.l-reset {
+    width: 100%;
+    max-width: 580px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    h1 {
+        font-family: $Gantari;
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 52px;
+        text-align: center;
+        margin-bottom: 22px;
+    }
+    input {
+        width: 100%;
+        font-family: $Gantari;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 29px;
+        padding: 12px 24px;
+        border: 0;
+        border-bottom: 1px solid #e27d41;
+        &::placeholder {
+            color: #180f24;
+        }
+        &:first-of-type {
+            margin-bottom: 24px;
+        }
+    }
+    button {
+        padding: 7px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: $Gantari;
+        font-size: 27px;
+        font-weight: 600;
+        line-height: 45px;
+        text-align: center;
+        color: #fff;
+        background-color: #e27d41;
+        filter: drop-shadow(0px 4px 12px #130921);
+        border: none;
+        margin-top: 8px;
+        margin-bottom: 32px;
+        width: 100%;
+        cursor: pointer;
+    }
+    &__forgot {
+        display: block;
+        font-family: $Gantari;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 24px;
+        text-align: center;
+        color: #e27d41;
+        text-decoration: underline;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 12px;
+    }
+    &__register {
+        font-family: $Gantari;
+        font-size: 20px;
+        font-weight: 400;
+        line-height: 24px;
+        text-align: center;
+        a {
+            color: #e27d41;
+            text-decoration: underline;
+        }
+    }
+    &__error {
+        border: 2px solid #de0101;
+        font-family: $Gantari;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 29px;
+        text-align: center;
+        color: #de0101;
+        margin-bottom: 12px;
+        padding: 6px 0;
+    }
+    &__success {
+        border: 2px solid #089a05;
+        font-family: $Gantari;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 29px;
+        text-align: center;
+        color: #089a05;
+        margin-bottom: 12px;
+        padding: 6px 0;
+    }
+}
