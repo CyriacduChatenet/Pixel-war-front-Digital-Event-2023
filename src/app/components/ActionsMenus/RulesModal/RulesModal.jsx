@@ -1,10 +1,11 @@
 import CloseIcon from "../../../assets/images/close_icon.png";
+import coin from "../../../assets/images/coin.png";
 
 const RulesModal = ({ isModalActive, setIsModalActive }) => {
   return (
     <div className={isModalActive ? "rules-modal modal-active" : "rules-modal"}>
       <div className="rules-modal__content">
-        <img src={CloseIcon} alt="" onClick={() => setIsModalActive(false)} />
+        <img className="close-icon" src={CloseIcon} alt="" onClick={() => setIsModalActive(false)} />
         <div className="rules-modal__content__header">
           <h2>
             Consignes<span>Consignes</span>
@@ -20,7 +21,7 @@ const RulesModal = ({ isModalActive, setIsModalActive }) => {
             couleur changé en chronomètre te l’indiquera.
           </p>
           <p>
-            Tous les 20 pixels placés, tu gagneras un . Afin d’être éligible au
+            Tous les 20 pixels placés, tu gagneras un <img className="coin-rules" src={coin} alt=""/> . Afin d’être éligible au
             tirage au sort, il te faudra avoir gagné au mois
             <span> 10 coins</span>.
           </p>

@@ -44,12 +44,16 @@
   }
  }
 
- img {
+ .close-icon {
   cursor: pointer;
   position: absolute;
   right: 3%;
   top: 3%;
  }
+}
+
+.coin-rules{
+ width: 24px;
 }
 
 
