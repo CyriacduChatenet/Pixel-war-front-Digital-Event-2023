@@ -40,7 +40,7 @@ const Login = () => {
           <input
             type="text"
             name="email"
-            placeholder="Nom d'utilisateur"
+            placeholder="Adresse email"
             required
           />
         </div>

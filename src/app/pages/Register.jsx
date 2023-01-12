@@ -12,11 +12,6 @@ const Register = () => {
     const email = e.target.email.value;
     // const team = e.target.teams.value;
     const password = e.target.password.value;
-    const passwordConfirm = e.target["password-confirm"].value;
-    if (password !== passwordConfirm) {
-      setError("Les mots de passe ne correspondent pas");
-      return;
-    }
     const data = {
       username: username,
       password: password,
