@@ -1,5 +1,6 @@
 .rules-modal {
  position: absolute;
+ z-index: 20;
  left: 50%;
  top: -150%;
  transform: translate(-50%, -50%);
@@ -8,7 +9,6 @@
  background-color: white;
  padding: 40px;
  border: solid 1px $main-orange;
- z-index: 11;
  transition: 0.4s ease-in-out all;
 
  &__content {

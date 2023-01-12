@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 const HudInfo = ({ x, y, hide }) => {
   const [time, setTime] = useState(108000000);
 
-  const startDateEvent = new Date('2023-01-13T11:00:00');
-  const endDateEvent = new Date('2023-01-13T12:00:00');
+  const startDateEvent = new Date('2023-01-13T13:00:00');
+  const endDateEvent = new Date('2023-01-13T16:00:00');
   const dateNow = new Date()
 
   const handleDefineTimer = () => {
