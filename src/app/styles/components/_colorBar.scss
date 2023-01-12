@@ -9,6 +9,7 @@
   width: 70vw;
   margin-bottom: 15px;
   background-color: white;
+  border: solid 3px $main-orange;
   padding: 15px 30px;
   border-radius: 50px;
   gap: 10px;
@@ -19,7 +20,8 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  font-family: $Unibody-regular;
+  font-family: $Unibody-bold;
+  color: $main-orange;
 }
 
 .color-item {

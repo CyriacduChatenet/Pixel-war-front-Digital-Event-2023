@@ -26,6 +26,10 @@ const RulesModal = ({ isModalActive, setIsModalActive }) => {
             <span> 10 coins</span>.
           </p>
           <p>Que la bataille des pixels commence ! </p>
+
+          <div className="rules-card-container">
+
+          </div>
         </div>
       </div>
     </div>
