@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import ColorBar from "../ColorBar/ColorBar";
 import HudInfo from "../HudInfos/HudInfos";
 import ActionMenus from "../ActionsMenus/ActionsMenus";
+import ghost from "../../assets/images/ghost.png"
 import {
   createPixelService,
   getPixel,
@@ -20,6 +21,7 @@ const Canva = ({
   const { setNewPixelIsCreated, newPixelIsCreated } = useTimer();
   const [xPosition, setXPosition] = useState(0);
   const [yPosition, setYPosition] = useState(0);
+  const [stillTest, setStillTest] = useState(true);
   const [progress, setProgress] = useState(0);
   const [hide, setHide] = useState(false);
   const gameRef = useRef(null);
@@ -133,6 +135,10 @@ const Canva = ({
     drawGrids(gridCtx, game.width, game.height, gridCellSize, gridCellSize);
     drawPixelOnInit();
     updatePixelsGrid(game, createPixel);
+
+    setTimeout(() => {
+      setStillTest(false);
+    }, 5000);
   }, []);
 
   return (
@@ -160,7 +166,16 @@ const Canva = ({
         setCurrentColor={setCurrentColor}
       />
       <ActionMenus setHide={setHide} hide={hide} />
-      <ProgressBar hide={hide} progress={progress} setProgress={setProgress}/>
+      <ProgressBar hide={hide} progress={progress} setProgress={setProgress} />
+      {stillTest && (
+        <div className="test-war">
+          <img src={ghost} alt="" />
+          <p>
+            Cette war est un test ! Pas d’authentification donc pas de
+            comptabilisation de points{" "}
+          </p>
+        </div>
+      )}
     </div>
   );
 };
