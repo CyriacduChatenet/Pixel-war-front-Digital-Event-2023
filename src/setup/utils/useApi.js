@@ -57,6 +57,8 @@ export const connectUser = async (data) => {
   .then((userCredential) => {
     const user = userCredential.user;
     localStorage.setItem("token", user.accessToken);
+    localStorage.setItem("uid", user.uid)
+    return user
   })
 }
 

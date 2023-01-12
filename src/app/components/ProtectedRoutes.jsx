@@ -1,4 +1,4 @@
-import { getTokenFromLocalstorage } from "../../setup/utils/authorization";
+import { getTokenFromLocalstorage, verifyToken } from "../../setup/utils/authorization";
 import { Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { useUserContext } from "../../setup/contexts/UserContext";
@@ -11,11 +11,11 @@ const ProtectedRoute = ({ children }) => {
 
   useEffect(() => {
     if (token && !user) {
-      const decoded = jwt_decode(token);
-      const id = decoded.id;
-      getSingleUser(id).then((data) => {
-        setUser(data);
-      });
+      // const decoded = jwt_decode(token);
+      // const id = decoded.uid;
+      // getSingleUser(id).then((data) => {
+      //   setUser(data);
+      // });
     }
   }, [token, user, setUser]);
 
@@ -23,13 +23,13 @@ const ProtectedRoute = ({ children }) => {
     return <Navigate to="/connexion" />;
   }
 
-  const decoded = jwt_decode(token);
+  // const decoded = jwt_decode(token);
   const currentTime = Math.floor(Date.now() / 1000);
 
-  if (decoded.exp < currentTime) {
-    localStorage.removeItem("token");
-    return <Navigate to="/connexion" />;
-  }
+  // if (decoded.exp < currentTime) {
+  //   localStorage.removeItem("token");
+  //   return <Navigate to="/connexion" />;
+  // }
 
   return children;
 };

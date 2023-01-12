@@ -88,10 +88,12 @@ const Canva = ({
     const ctx = game.getContext("2d");
     const x = cursorRef.current.offsetLeft;
     const y = cursorRef.current.offsetTop - game.offsetTop;
+    const userId = localStorage.getItem("uid");
     const payload = {
       x: x,
       y: y,
       color: currentColor,
+      userId: userId
     };
     createPixelService(payload);
     // socket emit payload as "pixel"
