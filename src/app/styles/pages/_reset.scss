@@ -83,4 +83,15 @@
         margin-bottom: 12px;
         padding: 6px 0;
     }
+    &__success {
+        border: 2px solid #089a05;
+        font-family: $Gantari;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 29px;
+        text-align: center;
+        color: #089a05;
+        margin-bottom: 12px;
+        padding: 6px 0;
+    }
 }
