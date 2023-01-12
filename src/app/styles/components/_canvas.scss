@@ -48,3 +48,25 @@
         cursor: none;
     }
 }
+
+.test-war {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 40px;
+    position: absolute;
+    gap: 40px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); 
+    background-color: #180F24;
+
+    img {
+        width: 48px;
+    }
+
+    p {
+        color: #FFCC66;
+        font-family: $Unibody-bold;
+    }
+}
