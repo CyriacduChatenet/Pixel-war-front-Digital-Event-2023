@@ -9,6 +9,7 @@ import {
 } from "../../../setup/services/game.service";
 
 import useTimer from "../../../setup/context/timerContext";
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 const Canva = ({
   currentColor,
@@ -19,6 +20,7 @@ const Canva = ({
   const { setNewPixelIsCreated, newPixelIsCreated } = useTimer();
   const [xPosition, setXPosition] = useState(0);
   const [yPosition, setYPosition] = useState(0);
+  const [progress, setProgress] = useState(0);
   const [hide, setHide] = useState(false);
   const gameRef = useRef(null);
   const addPixelAnimRef = useRef(null);
@@ -50,6 +52,7 @@ const Canva = ({
 
   const handleAddPixel = () => {
     addPixelIntoGame();
+    setProgress(progress + 1);
   };
 
   const handleFollowMouse = (event) => {
@@ -157,6 +160,7 @@ const Canva = ({
         setCurrentColor={setCurrentColor}
       />
       <ActionMenus setHide={setHide} hide={hide} />
+      <ProgressBar hide={hide} progress={progress} setProgress={setProgress}/>
     </div>
   );
 };

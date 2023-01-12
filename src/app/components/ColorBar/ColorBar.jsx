@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import useTimer from "../../../setup/context/timerContext";
 import arrowIcon from "../../assets/images/arrow.png";
 
-const ColorBar = ({ currentColor, setCurrentColor }) => {
+const ColorBar = ({ currentColor, setCurrentColor, hide }) => {
   const [time, setTime] = useState(10);
   const { newPixelIsCreated, setNewPixelIsCreated } = useTimer();
 
@@ -113,7 +113,7 @@ const ColorBar = ({ currentColor, setCurrentColor }) => {
 
   return (
     <div
-      className={"colorBar"}
+      className={!hide ? "colorBar" : "hide"}
       style={newPixelIsCreated ? { width: "16rem", height: "4rem" } : null}
     >
       <div className="color-list" ref={colorListRef}>

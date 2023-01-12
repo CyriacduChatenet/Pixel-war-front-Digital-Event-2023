@@ -1,0 +1,130 @@
+.c-progressbar {
+
+    &__totalcoins {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        background-color: #180F24;
+        padding: 6px 17px 6px 17px;
+    }
+
+    &__coins {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #FFCC66;
+        font-size: 21px;
+        font-weight: 900;
+        line-height: 31px;
+        gap: 10px;
+
+        img {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    &__bar {
+        height: 50vh;
+        width: 34px;
+        background-color: #180F24;
+        display: flex;
+        align-items: center;
+        margin-left: 30px;
+        border: none;
+        flex-direction: column;
+        justify-content: end;
+    }
+
+    &__barTop3 {
+        width: 27px;
+        height: 15px;
+        background-color: #180F24;
+        margin-left: 33px;
+    }
+
+    &__barTop2 {
+        width: 18px;
+        height: 15px;
+        background-color: #180F24;
+        margin-left: 38px;
+    }
+
+    &__barTop1 {
+        width: 10px;
+        height: 15px;
+        background-color: #180F24;
+        margin-left: 42px;
+    }
+
+    &__barBottom1 {
+        width: 27px;
+        height: 15px;
+        background-color: #FFCC66;
+        margin-left: 33px;
+    }
+
+    &__barBottom2 {
+        width: 18px;
+        height: 15px;
+        background-color: #FFCC66;
+        margin-left: 38px;
+    }
+
+    &__barBottom3 {
+        width: 10px;
+        height: 15px;
+        background-color: #FFCC66;
+        margin-left: 42px;
+    }
+
+    &__fill {
+        width: 100%;
+        background-color: #FFCC66;
+
+        display: flex;
+    }
+
+    &__popup {
+        background-color: #180F24;
+        padding: 6px 17px 6px 17px;
+        margin-top: 10px;
+    }
+
+    &__allbar {
+        position: absolute;
+        top: 50%;
+        left: 30px;
+        transform: translateY(-50%);
+    }
+
+    &__concours {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-image: url("../../assets/images/concours.png");
+        width: 706px;
+        height: 178px;
+        display: flex;
+        align-items: center;
+        padding: 0 81px;
+
+        &__trophy {
+            width: 48px;
+            height: 48px;
+        }
+    }
+
+    &__p {
+        font-size: 24px;
+        font-weight: 900;
+        line-height: 36px;
+        letter-spacing: 0px;
+        text-align: center;
+        color: #FFCC66;
+        padding-left: 14px;
+    }
+
+
+}
