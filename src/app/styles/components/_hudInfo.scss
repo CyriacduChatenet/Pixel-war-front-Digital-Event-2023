@@ -13,17 +13,16 @@
         align-items: center;
         justify-content: center;
         padding: 14.5px 0;
-        border: 1px solid $main-orange;
-        border: 1px solid $main-orange;
+        border: 3px solid $main-orange;
+        border: 3px solid $main-orange;
         background-color: #fff;
         &:first-child {
             margin-right: 90px;
         }
         p {
-            font-family: $Unibody-regular;
+            font-family: $Unibody-bold;
             color: $main-orange;
             font-size: 20px;
-            font-weight: 400;
             line-height: 30px;
             text-align: left;
         }
@@ -32,9 +31,9 @@
         width: 8px;
         height: 48px;
         background-color: #fff;
-        border-left: 1px solid $main-orange;
-        border-top: 1px solid $main-orange;
-        border-bottom: 1px solid $main-orange;
+        border-left: 3px solid $main-orange;
+        border-top: 3px solid $main-orange;
+        border-bottom: 3px solid $main-orange;
         position: absolute;
         left: -8px;
         &::before {
@@ -46,18 +45,18 @@
             width: 11px;
             height: 34px;
             background-color: #fff;
-            border-top: 1px solid $main-orange;
-            border-left: 1px solid $main-orange;
-            border-bottom: 1px solid $main-orange;
+            border-top: 3px solid $main-orange;
+            border-left: 3px solid $main-orange;
+            border-bottom: 3px solid $main-orange;
         }
     }
     &__right {
         width: 8px;
         height: 48px;
         background-color: #fff;
-        border-right: 1px solid $main-orange;
-        border-top: 1px solid $main-orange;
-        border-bottom: 1px solid $main-orange;
+        border-right: 3px solid $main-orange;
+        border-top: 3px solid $main-orange;
+        border-bottom: 3px solid $main-orange;
         position: absolute;
         right: -8px;
         &::before {
@@ -69,9 +68,10 @@
             width: 11px;
             height: 34px;
             background-color: #fff;
-            border-top: 1px solid $main-orange;
-            border-right: 1px solid $main-orange;
-            border-bottom: 1px solid $main-orange;
+            border-left: 0px solid transparent;
+            border-top: 3px solid $main-orange;
+            border-right: 3px solid $main-orange;
+            border-bottom: 3px solid $main-orange;
         }
     }
 }
