@@ -8,6 +8,7 @@ import useTimer from "../../../setup/context/timerContext";
 
 const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => {
   const { setNewPixelIsCreated } = useTimer()
+  const [owner, setOwner] = useState(false);
   const [xPosition, setXPosition] = useState(0);
   const [yPosition, setYPosition] = useState(0);
   const [hide, setHide] = useState(false);
@@ -40,7 +41,7 @@ const Canva = ({ currentColor, setCurrentColor, pixelColor, setPixelColor }) => 
   const gridCellSize = 10;
 
   const handleAddPixel = () => {
-    addPixelIntoGame();
+     addPixelIntoGame();
   };
 
   const handleFollowMouse = (event) => {
