@@ -29,7 +29,9 @@ const Login = () => {
   return (
     <div className="l-login">
       <h1>Connecte-toi et rejoins la bataille !</h1>
-      {error && <p>Les informations ne sont pas correctes</p>}
+      {error && (
+        <p className="l-login__error">Les informations ne sont pas correctes</p>
+      )}
       <form onSubmit={handleSubmit}>
         <div>
           <input

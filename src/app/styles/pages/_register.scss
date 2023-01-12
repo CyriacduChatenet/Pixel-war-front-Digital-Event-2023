@@ -68,4 +68,15 @@
             text-decoration: underline;
         }
     }
+    &__error {
+        border: 2px solid #de0101;
+        font-family: $Gantari;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 29px;
+        text-align: center;
+        color: #de0101;
+        margin-bottom: 12px;
+        padding: 6px 0;
+    }
 }
