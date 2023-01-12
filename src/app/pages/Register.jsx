@@ -5,6 +5,7 @@ import { createUser } from "../../setup/utils/useApi";
 
 const Register = () => {
   const [result, setResult] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,6 +21,7 @@ const Register = () => {
     createUser(data)
       .then(() => {
         setResult("Le compte a bien été créé");
+        navigate("/");
       })
       .catch((e) => {
         if (e.stack.includes("email-already-in-use")) {
@@ -89,6 +91,7 @@ const Register = () => {
           type="password"
           name="password"
           placeholder="Mot de passe"
+          minLength={6}
           required
         />
         <button type="submit">

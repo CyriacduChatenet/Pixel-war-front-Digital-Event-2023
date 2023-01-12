@@ -7,6 +7,7 @@ import {
   createPixelService,
   getPixel,
   getTimer,
+  getUserScore,
   updatePixelsGrid,
 } from "../../../setup/services/game.service";
 
@@ -146,6 +147,7 @@ const Canva = ({
 
   useEffect(() => {
     getTimer(setTime)
+    getUserScore(setProgress);
     const game = gameRef.current;
     game.width = document.body.clientWidth;
     game.height = document.body.clientHeight;

@@ -85,9 +85,10 @@ const updatePixelsGrid = async (game, createPixel) => {
   });
 };
 
-const getUserScore = async (userId) => {
+const getUserScore = async (setProgress) => {
+    const userId = localStorage.getItem('uid')
     const user = await getDoc(doc(firestoreDb, 'users', userId))
-    return user.data().totalScore
+    setProgress(user.data().totalScore)
 }
 
 const getTimer = async (setTime) => {
